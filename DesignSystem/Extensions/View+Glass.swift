@@ -4,7 +4,7 @@ extension View {
 
     func glass() -> some View {
 
-        modifier(GlassMaterial())
+        modifier(GlassShader())
 
     }
 
