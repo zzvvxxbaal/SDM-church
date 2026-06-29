@@ -2,11 +2,20 @@ import SwiftUI
 
 struct GlassShader: ViewModifier {
 
+    @State
+    private var motion = DeviceMotionManager()
+
     func body(content: Content) -> some View {
 
         content
 
             .background(.ultraThinMaterial)
+
+            .overlay {
+
+                GlassRefraction()
+
+            }
 
             .overlay {
 
@@ -16,7 +25,25 @@ struct GlassShader: ViewModifier {
 
             .overlay {
 
-                GlassRefraction()
+                GlassSpecular()
+
+            }
+
+            .overlay {
+
+                GlassCaustic()
+
+            }
+
+            .overlay {
+
+                GlassEnvironmentReflection(
+
+                    x: motion.roll * 80,
+
+                    y: motion.pitch * 80
+
+                )
 
             }
 
