@@ -6,7 +6,7 @@ struct RootView: View {
 
         NavigationStack {
 
-            LoginView()
+            HomeView()
 
         }
 
