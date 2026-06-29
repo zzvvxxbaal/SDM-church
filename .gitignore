@@ -2,8 +2,9 @@
 .DS_Store
 
 # Xcode
-.build/
 DerivedData/
+build/
+.build/
 
 *.pbxuser
 !default.pbxuser
@@ -17,13 +18,13 @@ DerivedData/
 *.perspectivev3
 !default.perspectivev3
 
-xcuserdata/
+*.xcuserstate
 *.xccheckout
 *.moved-aside
-*.xcuserstate
+
+xcuserdata/
 
 # Swift Package Manager
-.build
 .swiftpm/
 Packages/
 
@@ -36,20 +37,17 @@ Carthage/Build/
 # Fastlane
 fastlane/report.xml
 fastlane/Preview.html
-fastlane/screenshots
-fastlane/test_output
+fastlane/screenshots/
+fastlane/test_output/
 
 # Archives
 *.ipa
-*.dSYM.zip
 *.dSYM
+*.dSYM.zip
 
 # Playgrounds
 timeline.xctimeline
 playground.xcworkspace
-
-# Logs
-*.log
 
 # Environment
 .env
@@ -60,16 +58,15 @@ Config/*.xcconfig
 # Firebase
 GoogleService-Info.plist
 
-# VSCode
+# Editors
 .vscode/
-
-# Cursor
 .cursor/
-
-# Fleet
 .fleet/
 
+# Logs
+*.log
+
 # Temporary
+*.swp
 *.tmp
 *.temp
-*.swp
