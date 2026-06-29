@@ -8,8 +8,6 @@ struct LiquidButton: ButtonStyle {
 
             .font(AppFonts.headline)
 
-            .foregroundStyle(.primary)
-
             .frame(maxWidth: .infinity)
 
             .frame(height: 60)
@@ -18,7 +16,7 @@ struct LiquidButton: ButtonStyle {
 
             .modifier(
 
-                PressAnimation(
+                GlassMorph(
 
                     pressed: configuration.isPressed
 
