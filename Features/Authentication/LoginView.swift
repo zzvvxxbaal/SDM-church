@@ -2,6 +2,9 @@ import SwiftUI
 
 struct LoginView: View {
 
+    @State
+    private var viewModel = AuthenticationViewModel()
+
     var body: some View {
 
         ZStack {
@@ -10,9 +13,9 @@ struct LoginView: View {
 
                 .ignoresSafeArea()
 
-            ScrollView(showsIndicators: false) {
+            ScrollView(.vertical, showsIndicators: false) {
 
-                VStack(spacing: 32) {
+                VStack(spacing: 36) {
 
                     Spacer()
 
@@ -30,7 +33,27 @@ struct LoginView: View {
 
                     }
 
-                    Spacer()
+                    VStack(spacing: 18) {
+
+                        LiquidTextField(
+
+                            title: "이메일",
+
+                            text: $viewModel.email,
+
+                            systemImage: "envelope"
+
+                        )
+
+                        LiquidSecureField(
+
+                            title: "비밀번호",
+
+                            text: $viewModel.password
+
+                        )
+
+                    }
 
                     VStack(spacing: 18) {
 
@@ -38,7 +61,7 @@ struct LoginView: View {
 
                         } label: {
 
-                            Text("이메일로 계속하기")
+                            Text("로그인")
 
                         }
 
@@ -48,7 +71,7 @@ struct LoginView: View {
 
                         } label: {
 
-                            Text("Google로 계속하기")
+                            Label("Google로 계속하기", systemImage: "globe")
 
                         }
 
@@ -80,7 +103,7 @@ struct LoginView: View {
 
                 .padding(.horizontal,24)
 
-                .padding(.vertical,40)
+                .padding(.vertical,50)
 
             }
 
