@@ -23,6 +23,8 @@ struct CalendarView: View {
                         subtitle: "이번 주"
 
                     )
+                    
+                     CalendarMonthHeader()
 
                     ForEach(viewModel.events) {
 
