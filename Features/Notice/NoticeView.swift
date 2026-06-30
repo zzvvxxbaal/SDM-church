@@ -34,7 +34,9 @@ struct NoticeView: View {
 
                     )
 
-                    ForEach(viewModel.notices) {
+                    NoticeHeader()
+                    
+                     ForEach(viewModel.notices) {
 
                         NoticeCard(
 
