@@ -19,6 +19,8 @@ struct CommunityView: View {
                     LiquidNavigationBar(
                         title: "소그룹"
                     )
+                    
+                     LeaderCard()
 
                     ForEach(viewModel.groups, id: \.self) { group in
 
