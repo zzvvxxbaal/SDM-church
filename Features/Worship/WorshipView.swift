@@ -9,36 +9,57 @@ struct WorshipView: View {
 
         ZStack {
 
-            AppColors.background
-                .ignoresSafeArea()
+            MeshGradientBackground()
 
             ScrollView(.vertical, showsIndicators: false) {
 
                 VStack(spacing: 24) {
 
-                    LiquidNavigationBar(
-                        title: viewModel.title
+                    LiquidLargeTitle(
+
+                        title: viewModel.title,
+
+                        subtitle: "예배 안내"
+
                     )
+
+                    WorshipScheduleCard()
 
                     LiquidCard {
 
-                        Label(
-                            viewModel.nextWorship,
-                            systemImage: "calendar"
-                        )
+                        VStack(alignment: .leading, spacing: 16) {
 
-                        Divider()
+                            Label(
 
-                        Label(
-                            viewModel.location,
-                            systemImage: "mappin.and.ellipse"
-                        )
+                                viewModel.nextWorship,
+
+                                systemImage: "calendar"
+
+                            )
+
+                            GlassDivider()
+
+                            Label(
+
+                                viewModel.location,
+
+                                systemImage: "mappin.and.ellipse"
+
+                            )
+
+                        }
 
                     }
 
+                    Color.clear
+
+                        .frame(height: 100)
+
                 }
 
-                .padding(24)
+                .padding(.horizontal, 24)
+
+                .padding(.top, 24)
 
             }
 
