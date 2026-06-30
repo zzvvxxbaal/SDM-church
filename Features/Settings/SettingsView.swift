@@ -3,38 +3,66 @@ import SwiftUI
 struct SettingsView: View {
 
     @State
+
     private var viewModel = SettingsViewModel()
+
+    @State
+
+    private var notification = true
+
+    @State
+
+    private var darkMode = false
 
     var body: some View {
 
         ZStack {
 
-            AppColors.background
-                .ignoresSafeArea()
+            MeshGradientBackground()
 
             ScrollView {
 
-                VStack(spacing: 20) {
+                VStack(spacing: 18) {
 
-                    LiquidNavigationBar(
-                        title: "설정"
+                    LiquidLargeTitle(
+
+                        title: "설정",
+
+                        subtitle: "앱 환경"
+
                     )
 
-                    ForEach(viewModel.items, id: \.self) { item in
+                    Toggle(
 
-                        LiquidCard {
+                        "알림",
 
-                            HStack {
+                        isOn: $notification
 
-                                Text(item)
+                    )
 
-                                Spacer()
+                    .toggleStyle(LiquidToggle())
 
-                                Image(systemName: "chevron.right")
+                    Toggle(
 
-                                    .foregroundStyle(.tertiary)
+                        "다크 모드",
 
-                            }
+                        isOn: $darkMode
+
+                    )
+
+                    .toggleStyle(LiquidToggle())
+
+                    ForEach(viewModel.items) { item in
+
+                        LiquidListRow {
+
+                            Label(
+
+                                item.title,
+
+                                systemImage: item.icon
+
+                            )
 
                         }
 
@@ -49,11 +77,5 @@ struct SettingsView: View {
         }
 
     }
-
-}
-
-#Preview {
-
-    SettingsView()
 
 }
