@@ -3,79 +3,113 @@ import SwiftUI
 struct HomeView: View {
 
     @State
-    private var viewModel = HomeViewModel()
-
-    @State
-    private var tabSelection = 0
+    private var tab = 0
 
     var body: some View {
 
         ZStack(alignment: .bottom) {
 
-            AppColors.background
+            MeshGradientBackground()
 
-                .ignoresSafeArea()
-
-            ScrollView(.vertical, showsIndicators: false) {
+            ScrollView {
 
                 VStack(spacing: 24) {
 
-                    LiquidNavigationBar(
-                        title: "서대문교회"
+                    LiquidLargeTitle(
+
+                        title: "서대문교회",
+
+                        subtitle: "청년부"
+
                     )
 
-                    LiquidCard {
+                    HomeHeader()
 
-                        HStack {
+                    TodayVerseCard()
 
-                            VStack(alignment: .leading, spacing: 6) {
+                    HomeCard(
 
-                                Text("안녕하세요")
+                        section: .init(
 
-                                    .font(AppFonts.body)
+                            title: "이번 주 예배",
 
-                                    .foregroundStyle(.secondary)
+                            subtitle: "주일 오후 2:00",
 
-                                Text("정현석님")
+                            icon: "church"
 
-                                    .font(AppFonts.hero)
-
-                            }
-
-                            Spacer()
-
-                            LiquidAvatar(
-                                initials: "정"
-                            )
-
-                        }
-
-                    }
-
-                    ForEach(viewModel.sections) { section in
-
-                        HomeCard(
-                            section: section
                         )
 
-                    }
+                    )
+
+                    HomeCard(
+
+                        section: .init(
+
+                            title: "공지사항",
+
+                            subtitle: "새로운 공지가 있습니다.",
+
+                            icon: "megaphone.fill"
+
+                        )
+
+                    )
+
+                    HomeCard(
+
+                        section: .init(
+
+                            title: "소그룹",
+
+                            subtitle: "이번 주 모임을 확인하세요.",
+
+                            icon: "person.3.fill"
+
+                        )
+
+                    )
 
                     Color.clear
+
                         .frame(height: 120)
 
                 }
 
                 .padding(.horizontal,24)
 
-                .padding(.top,20)
+                .padding(.top,24)
 
             }
 
-            LiquidTabBar(
-                selection: $tabSelection
-            )
+            FloatingGlassTabBar {
+
+                Spacer()
+
+                Image(systemName: "house.fill")
+
+                Spacer()
+
+                Image(systemName: "calendar")
+
+                Spacer()
+
+                Image(systemName: "hands.sparkles.fill")
+
+                Spacer()
+
+                Image(systemName: "person.3.fill")
+
+                Spacer()
+
+                Image(systemName: "gearshape.fill")
+
+                Spacer()
+
+            }
+
             .padding(.horizontal,20)
-            .padding(.bottom,20)
+
+            .padding(.bottom,16)
 
         }
 
