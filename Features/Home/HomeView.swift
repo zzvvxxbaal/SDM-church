@@ -31,11 +31,19 @@ struct HomeView: View {
 
                     HomeBanner()
                     
-                     AttendanceCard()
+                    AttendanceCard()
 
-                     UpcomingEventCard()
+                    UpcomingEventCard()
 
-                     PrayerSummaryCard()
+                    PrayerSummaryCard()
+                    
+                    WeeklyVerseCard()
+
+                     WorshipCountdownCard()
+ 
+                     ChurchEventCard()
+
+                     RecentNoticeCard()
 
                     HomeCard(
 
