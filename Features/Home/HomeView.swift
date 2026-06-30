@@ -25,7 +25,11 @@ struct HomeView: View {
 
                     HomeHeader()
 
+                    QuickMenu()
+
                     TodayVerseCard()
+
+                    HomeBanner()
 
                     HomeCard(
 
@@ -75,9 +79,9 @@ struct HomeView: View {
 
                 }
 
-                .padding(.horizontal,24)
+                .padding(.horizontal, 24)
 
-                .padding(.top,24)
+                .padding(.top, 24)
 
             }
 
@@ -107,9 +111,9 @@ struct HomeView: View {
 
             }
 
-            .padding(.horizontal,20)
+            .padding(.horizontal, 20)
 
-            .padding(.bottom,16)
+            .padding(.bottom, 16)
 
         }
 
