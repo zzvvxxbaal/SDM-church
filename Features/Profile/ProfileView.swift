@@ -3,21 +3,25 @@ import SwiftUI
 struct ProfileView: View {
 
     @State
+
     private var viewModel = ProfileViewModel()
 
     var body: some View {
 
         ZStack {
 
-            AppColors.background
-                .ignoresSafeArea()
+            MeshGradientBackground()
 
             ScrollView {
 
                 VStack(spacing: 24) {
 
-                    LiquidNavigationBar(
-                        title: "프로필"
+                    LiquidLargeTitle(
+
+                        title: "프로필",
+
+                        subtitle: "내 정보"
+
                     )
 
                     LiquidAvatar(
@@ -32,7 +36,7 @@ struct ProfileView: View {
 
                         Text(viewModel.name)
 
-                            .font(AppFonts.title)
+                            .font(.title.bold())
 
                         Text(viewModel.church)
 
@@ -43,6 +47,14 @@ struct ProfileView: View {
                             .foregroundStyle(.secondary)
 
                     }
+
+                    ProfileStatSection()
+
+                    ProfileMenuSection()
+
+                    Color.clear
+
+                        .frame(height: 80)
 
                 }
 
