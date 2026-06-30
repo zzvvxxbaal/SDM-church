@@ -49,19 +49,7 @@ struct GlassShader: ViewModifier {
 
             .overlay {
 
-                GlassHighlight()
-
-            }
-
-            .overlay {
-
-                GlassReflection()
-
-            }
-
-            .overlay {
-
-                GlassBorder()
+                LiquidBorder()
 
             }
 
