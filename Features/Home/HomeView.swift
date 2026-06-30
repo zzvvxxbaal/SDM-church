@@ -44,6 +44,14 @@ struct HomeView: View {
                      ChurchEventCard()
 
                      RecentNoticeCard()
+                    
+                     WelcomeCard()
+
+                     DevotionalCard()
+
+                     MinistryCard()
+
+                     OfferingCard()
 
                     HomeCard(
 
