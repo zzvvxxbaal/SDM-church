@@ -30,6 +30,12 @@ struct HomeView: View {
                     TodayVerseCard()
 
                     HomeBanner()
+                    
+                     AttendanceCard()
+
+                     UpcomingEventCard()
+
+                     PrayerSummaryCard()
 
                     HomeCard(
 
