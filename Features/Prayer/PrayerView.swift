@@ -20,6 +20,8 @@ struct PrayerView: View {
                         title: "기도"
                     )
 
+                     PrayerInputCard()
+
                     ForEach(viewModel.prayers, id: \.self) { prayer in
 
                         LiquidCard {
