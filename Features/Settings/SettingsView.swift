@@ -54,6 +54,8 @@ struct SettingsView: View {
 
                     ForEach(viewModel.items) { item in
 
+                        AboutCard()
+                        
                         LiquidListRow {
 
                             Label(
