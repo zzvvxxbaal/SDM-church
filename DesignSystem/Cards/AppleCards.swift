@@ -163,6 +163,7 @@ struct AppleExpandableCard<Content: View>: View {
         .padding(AppSpacing.large)
         .frame(maxWidth: .infinity, alignment: .leading)
         .liquidGlass(.card, cornerRadius: AppRadius.card)
+        .cardExpand(isExpanded: isExpanded, scale: 1.02)
         .onTapGesture {
             withAnimation(.spring(response: 0.3, dampingFraction: 0.7)) {
                 isExpanded.toggle()

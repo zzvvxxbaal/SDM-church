@@ -1,6 +1,12 @@
 import SwiftUI
 
-// MARK: - Animation
+// MARK: - Motion System
+public typealias Motion = MotionSystem
+public typealias MotionTiming = MotionTiming
+public typealias MotionSpring = MotionSpring
+public typealias MotionAnimation = MotionAnimation
+
+// MARK: - Animation Presets
 public typealias AnimationConfig = AnimationProvider
 
 // MARK: - Haptics
@@ -14,9 +20,6 @@ public typealias Theme = ThemeProvider
 
 // MARK: - Glass
 public typealias Glass = GlassProvider
-
-// MARK: - Motion
-public typealias Motion = MotionEffects
 
 // MARK: - Navigation - Core
 public typealias Navigation = NavigationCoordinator

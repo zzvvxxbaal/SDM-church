@@ -6,6 +6,8 @@ struct LiquidIconButton: View {
 
     let action: () -> Void
 
+    @State private var isPressed = false
+
     var body: some View {
 
         Button(action: action) {
@@ -21,6 +23,12 @@ struct LiquidIconButton: View {
         .buttonStyle(.plain)
 
         .liquidGlass(.button, cornerRadius: 26)
+
+        .buttonPress(isPressed: isPressed, scale: 0.9, opacity: 0.8, hapticFeedback: true)
+
+        .onTouchDown { isPressed = true }
+
+        .onTouchUp { isPressed = false }
 
     }
 

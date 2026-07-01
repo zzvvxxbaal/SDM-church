@@ -14,10 +14,11 @@ struct LiquidButton: ButtonStyle {
 
             .liquidGlass(.button, cornerRadius: AppRadius.button)
 
-            .pressAnimation(
-                pressed: configuration.isPressed,
+            .buttonPress(
+                isPressed: configuration.isPressed,
                 scale: 0.95,
-                rotation: 1.0
+                opacity: 0.85,
+                hapticFeedback: true
             )
 
     }
