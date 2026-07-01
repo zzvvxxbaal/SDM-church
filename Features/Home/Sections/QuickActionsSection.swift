@@ -51,6 +51,8 @@ private struct QuickActionButton: View {
     let title: String
     let action: (() -> Void)?
     
+    @State private var isPressed = false
+    
     var body: some View {
         Button(action: { action?() }) {
             VStack(spacing: AppSpacing.medium) {
@@ -65,8 +67,10 @@ private struct QuickActionButton: View {
             .frame(maxWidth: .infinity)
             .frame(height: 100)
             .liquidGlass(.card, cornerRadius: AppRadius.card)
-            .pressAnimation(pressed: false, scale: 0.95, rotation: 0)
+            .buttonPress(isPressed: isPressed, scale: 0.95, opacity: 0.85, hapticFeedback: true)
         }
+        .onTouchDown { isPressed = true }
+        .onTouchUp { isPressed = false }
     }
 }
 

@@ -1,5 +1,11 @@
 import SwiftUI
 
+// MARK: - Motion System
+public typealias Motion = MotionSystem
+public typealias MotionTiming = MotionTiming
+public typealias MotionSpring = MotionSpring
+public typealias ComponentMotion = ComponentMotionPresets
+
 // MARK: - Foundation
 
 public typealias Colors = AppColors
