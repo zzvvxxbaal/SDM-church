@@ -101,7 +101,7 @@ public struct FeatureScreenView<Content: View>: View {
                                 Image(systemName: "chevron.left")
                                 Text("Back")
                             }
-                            .foregroundColor(.blue)
+                            .foregroundStyle(AppColors.tint)
                         }
                         Spacer()
                     }
@@ -115,7 +115,7 @@ public struct FeatureScreenView<Content: View>: View {
                 if let subtitle = subtitle {
                     Text(subtitle)
                         .font(.caption)
-                        .foregroundColor(.secondary)
+                        .foregroundStyle(AppColors.textSecondary)
                 }
             }
             .padding(.horizontal, 16)

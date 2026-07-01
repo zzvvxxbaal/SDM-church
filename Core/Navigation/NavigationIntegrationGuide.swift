@@ -105,7 +105,7 @@ public struct NavigationExample_CustomBack: View {
                     Image(systemName: "chevron.left")
                     Text("Back")
                 }
-                .foregroundColor(.blue)
+                .foregroundStyle(AppColors.tint)
             }
             
             Spacer()
@@ -122,7 +122,7 @@ public struct NavigationExample_SwipeBack: View {
     public var body: some View {
         VStack {
             Text("Swipe from left edge to go back")
-                .foregroundColor(.secondary)
+                .foregroundStyle(AppColors.textSecondary)
         }
         .backSwipeGesture {
             coordinator.pop()
@@ -299,7 +299,7 @@ public struct CompleteFeatureExample: View {
                         Image(systemName: "chevron.left")
                         Text("Back")
                     }
-                    .foregroundColor(.blue)
+                    .foregroundStyle(AppColors.tint)
                 }
                 Spacer()
             }

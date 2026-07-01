@@ -9,31 +9,30 @@ public typealias AppModalController = ModalPresentationController
 // MARK: - Routing System
 
 public extension NavigationCoordinator {
-    
     var canNavigateBack: Bool {
         canGoBack()
     }
-    
+
     var hasModal: Bool {
         isModalPresented()
     }
-    
+
     func navigateTo(_ route: AppRoute) {
         navigate(to: route, transition: .push)
     }
-    
+
     func showModal(_ route: AppRoute) {
         presentSheet(route, style: .sheet)
     }
-    
+
     func showFullScreen(_ route: AppRoute) {
         presentSheet(route, style: .fullScreenCover)
     }
-    
+
     func showDialog(_ route: AppRoute) {
         presentSheet(route, style: .dialog)
     }
-    
+
     func hideModal() {
         dismissSheet()
     }
@@ -45,11 +44,11 @@ public struct AppNavigationView<Content: View>: View {
     @State private var coordinator = NavigationCoordinator()
     @State private var appearanceManager = NavigationBarAppearanceManager()
     let content: (NavigationCoordinator) -> Content
-    
+
     public init(@ViewBuilder content: @escaping (NavigationCoordinator) -> Content) {
         self.content = content
     }
-    
+
     public var body: some View {
         NavigationStack(path: $coordinator.navigationStack) {
             content(coordinator)
@@ -66,7 +65,7 @@ public struct DeepLinkManager {
         let handler = UniversalLinkHandler(coordinator: coordinator)
         return handler.handle(deepLink: url)
     }
-    
+
     public static func canOpen(_ url: URL) -> Bool {
         DeepLinkRoute(url: url) != nil
     }
@@ -75,76 +74,59 @@ public struct DeepLinkManager {
 // MARK: - Tab Bar Management
 
 public struct AppTabBar: View {
-    @ObservedObject var coordinator: TabBarCoordinator
+    @Environment(TabBarCoordinator.self) private var coordinator
     let onTabSelected: (Int) -> Void
-    
-    public init(
-        coordinator: TabBarCoordinator,
-        onTabSelected: @escaping (Int) -> Void
-    ) {
-        self.coordinator = coordinator
+
+    @available(*, deprecated, message: "Coordinator is provided through the environment.")
+    public init(coordinator: TabBarCoordinator, onTabSelected: @escaping (Int) -> Void) {
         self.onTabSelected = onTabSelected
     }
-    
+
+    public init(onTabSelected: @escaping (Int) -> Void) {
+        self.onTabSelected = onTabSelected
+    }
+
     public var body: some View {
         HStack(spacing: 0) {
-            TabBarItem(
-                icon: "house.fill",
-                label: "Home",
-                tag: 0,
-                isSelected: coordinator.selectedTab == 0
-            )
-            .onTapGesture {
-                coordinator.selectTab(0)
-                onTabSelected(0)
-            }
-            
-            TabBarItem(
-                icon: "music.note",
-                label: "Worship",
-                tag: 1,
-                isSelected: coordinator.selectedTab == 1
-            )
-            .onTapGesture {
-                coordinator.selectTab(1)
-                onTabSelected(1)
-            }
-            
-            TabBarItem(
-                icon: "hands.praying.fill",
-                label: "Prayer",
-                tag: 2,
-                isSelected: coordinator.selectedTab == 2
-            )
-            .onTapGesture {
-                coordinator.selectTab(2)
-                onTabSelected(2)
-            }
-            
-            TabBarItem(
-                icon: "person.fill",
-                label: "Community",
-                tag: 3,
-                isSelected: coordinator.selectedTab == 3
-            )
-            .onTapGesture {
-                coordinator.selectTab(3)
-                onTabSelected(3)
-            }
-            
-            TabBarItem(
-                icon: "gear.fill",
-                label: "Settings",
-                tag: 4,
-                isSelected: coordinator.selectedTab == 4
-            )
-            .onTapGesture {
-                coordinator.selectTab(4)
-                onTabSelected(4)
+            ForEach(0..<5, id: \.self) { index in
+                Button {
+                    coordinator.selectTab(index)
+                    onTabSelected(index)
+                } label: {
+                    TabBarItem(
+                        icon: tabIcon(for: index),
+                        label: tabLabel(for: index),
+                        tag: index,
+                        isSelected: coordinator.selectedTab == index
+                    )
+                }
+                .buttonStyle(.plain)
+                .accessibilityLabel("\(tabLabel(for: index)) tab")
+                .accessibilityHint("Opens the \(tabLabel(for: index)) screen")
             }
         }
-        .padding(.vertical, 8)
-        .background(Color(.systemBackground).opacity(0.95))
+        .padding(.vertical, AppSpacing.small)
+        .background(AppColors.background.opacity(0.95))
+    }
+
+    private func tabIcon(for index: Int) -> String {
+        switch index {
+        case 0: return "house.fill"
+        case 1: return "music.note"
+        case 2: return "hands.praying.fill"
+        case 3: return "person.fill"
+        default: return "gear.fill"
+        }
+    }
+
+    private func tabLabel(for index: Int) -> String {
+        switch index {
+        case 0: return "Home"
+        case 1: return "Worship"
+        case 2: return "Prayer"
+        case 3: return "Community"
+        default: return "Settings"
+        }
     }
 }
 
@@ -153,50 +135,49 @@ public struct TabBarItem: View {
     let label: String
     let tag: Int
     let isSelected: Bool
-    
+
     public var body: some View {
-        VStack(spacing: 4) {
+        VStack(spacing: AppSpacing.xSmall) {
             Image(systemName: icon)
-                .font(.system(size: 24))
-                .foregroundColor(isSelected ? AppColors.tint : .gray)
-            
+                .font(.title3)
+                .foregroundStyle(isSelected ? AppColors.tint : AppColors.textSecondary)
+
             Text(label)
                 .font(.caption2)
-                .foregroundColor(isSelected ? AppColors.tint : .gray)
+                .foregroundStyle(isSelected ? AppColors.tint : AppColors.textSecondary)
+                .lineLimit(1)
+                .minimumScaleFactor(0.8)
         }
         .frame(maxWidth: .infinity)
         .contentShape(Rectangle())
+        .accessibilityElement(children: .combine)
     }
 }
 
 // MARK: - Navigation Modifiers
 
 public extension View {
-    
-    func withAppNavigation(
-        _ coordinator: NavigationCoordinator
-    ) -> some View {
-        self.environment(coordinator)
+    func withAppNavigation(_ coordinator: NavigationCoordinator) -> some View {
+        environment(coordinator)
     }
-    
+
     func enableDeepLinking() -> some View {
-        self.onOpenURL { url in
+        onOpenURL { url in
             let window = UIApplication.shared.connectedScenes
                 .compactMap { $0 as? UIWindowScene }
                 .first?.windows
                 .first
-            
-            if let rootViewController = window?.rootViewController as? UIHostingController<AppNavigationView<AnyView>> {
+
+            if window?.rootViewController is UIHostingController<AppNavigationView<AnyView>> {
                 DeepLinkManager.open(url, with: NavigationCoordinator())
             }
         }
     }
-    
+
     func navigationBarAppearance(
         _ appearanceManager: NavigationBarAppearanceManager
     ) -> some View {
-        self
-            .environment(appearanceManager)
+        environment(appearanceManager)
             .largeTitleSynchronizer(appearanceManager)
     }
 }
@@ -204,35 +185,34 @@ public extension View {
 // MARK: - Modal Presentations
 
 public extension View {
-    
     func presentSheet(
         isPresented: Binding<Bool>,
         route: AppRoute? = nil,
         onDismiss: @escaping () -> Void = {},
         @ViewBuilder content: @escaping () -> some View
     ) -> some View {
-        self.sheet(isPresented: isPresented, onDismiss: onDismiss) {
+        sheet(isPresented: isPresented, onDismiss: onDismiss) {
             content()
         }
     }
-    
+
     func presentFullScreenCover(
         isPresented: Binding<Bool>,
         onDismiss: @escaping () -> Void = {},
         @ViewBuilder content: @escaping () -> some View
     ) -> some View {
-        self.fullScreenCover(isPresented: isPresented, onDismiss: onDismiss) {
+        fullScreenCover(isPresented: isPresented, onDismiss: onDismiss) {
             content()
         }
     }
-    
+
     func presentDialog(
         isPresented: Binding<Bool>,
         title: String,
         message: String,
         @ViewBuilder content: @escaping () -> some View
     ) -> some View {
-        self.modifier(DialogPresentationModifier(
+        modifier(DialogPresentationModifier(
             isPresented: isPresented,
             title: title,
             message: message,
@@ -241,31 +221,32 @@ public extension View {
     }
 }
 
-public struct DialogPresentationModifier<Content: View>: ViewModifier {
+public struct DialogPresentationModifier<DialogContent: View>: ViewModifier {
     @Binding var isPresented: Bool
     let title: String
     let message: String
-    let content: () -> Content
-    
+    let content: () -> DialogContent
+
     public func body(content: Content) -> some View {
         content
             .sheet(isPresented: $isPresented) {
-                VStack(spacing: 16) {
-                    VStack(spacing: 8) {
+                VStack(spacing: AppSpacing.medium) {
+                    VStack(spacing: AppSpacing.small) {
                         Text(title)
                             .font(.headline)
-                        
+
                         Text(message)
                             .font(.subheadline)
-                            .foregroundColor(.secondary)
+                            .foregroundStyle(AppColors.textSecondary)
                     }
-                    
+
                     self.content()
-                    
+
                     Button("Done") {
                         isPresented = false
                     }
                     .buttonStyle(.bordered)
+                    .accessibilityHint("Closes this dialog")
                 }
                 .padding()
             }
@@ -281,7 +262,7 @@ public struct NavigationPreview_Previews: PreviewProvider {
             VStack {
                 Text("Navigation Demo")
                     .font(.largeTitle)
-                
+
                 Button("Navigate") {
                     coordinator.navigate(to: .prayer)
                 }

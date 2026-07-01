@@ -65,12 +65,14 @@ public struct PrayerFeatureView: View {
             VStack(alignment: .leading, spacing: 8) {
                 HStack {
                     Button(action: { coordinator.pop() }) {
-                        HStack(spacing: 4) {
+                        HStack(spacing: AppSpacing.xSmall) {
                             Image(systemName: "chevron.left")
                             Text("Back")
                         }
-                        .foregroundColor(.blue)
+                        .foregroundStyle(AppColors.tint)
                     }
+                    .accessibilityLabel("Go back")
+                    .accessibilityHint("Returns to the previous screen")
                     Spacer()
                 }
                 .padding(.bottom, 8)
@@ -81,7 +83,7 @@ public struct PrayerFeatureView: View {
                 
                 Text("Share your prayer requests")
                     .font(.caption)
-                    .foregroundColor(.secondary)
+                    .foregroundStyle(AppColors.textSecondary)
             }
             .padding(.horizontal, 16)
             .padding(.vertical, 12)
@@ -116,12 +118,14 @@ public struct WorshipFeatureView: View {
             VStack(alignment: .leading, spacing: 8) {
                 HStack {
                     Button(action: { coordinator.pop() }) {
-                        HStack(spacing: 4) {
+                        HStack(spacing: AppSpacing.xSmall) {
                             Image(systemName: "chevron.left")
                             Text("Back")
                         }
-                        .foregroundColor(.blue)
+                        .foregroundStyle(AppColors.tint)
                     }
+                    .accessibilityLabel("Go back")
+                    .accessibilityHint("Returns to the previous screen")
                     Spacer()
                 }
                 .padding(.bottom, 8)
@@ -157,12 +161,14 @@ public struct CommunityFeatureView: View {
             VStack(alignment: .leading, spacing: 8) {
                 HStack {
                     Button(action: { coordinator.pop() }) {
-                        HStack(spacing: 4) {
+                        HStack(spacing: AppSpacing.xSmall) {
                             Image(systemName: "chevron.left")
                             Text("Back")
                         }
-                        .foregroundColor(.blue)
+                        .foregroundStyle(AppColors.tint)
                     }
+                    .accessibilityLabel("Go back")
+                    .accessibilityHint("Returns to the previous screen")
                     Spacer()
                 }
                 .padding(.bottom, 8)
@@ -198,12 +204,14 @@ public struct SettingsFeatureView: View {
             VStack(alignment: .leading, spacing: 8) {
                 HStack {
                     Button(action: { coordinator.pop() }) {
-                        HStack(spacing: 4) {
+                        HStack(spacing: AppSpacing.xSmall) {
                             Image(systemName: "chevron.left")
                             Text("Back")
                         }
-                        .foregroundColor(.blue)
+                        .foregroundStyle(AppColors.tint)
                     }
+                    .accessibilityLabel("Go back")
+                    .accessibilityHint("Returns to the previous screen")
                     Spacer()
                 }
                 .padding(.bottom, 8)
@@ -239,12 +247,14 @@ public struct NoticeFeatureView: View {
             VStack(alignment: .leading, spacing: 8) {
                 HStack {
                     Button(action: { coordinator.pop() }) {
-                        HStack(spacing: 4) {
+                        HStack(spacing: AppSpacing.xSmall) {
                             Image(systemName: "chevron.left")
                             Text("Back")
                         }
-                        .foregroundColor(.blue)
+                        .foregroundStyle(AppColors.tint)
                     }
+                    .accessibilityLabel("Go back")
+                    .accessibilityHint("Returns to the previous screen")
                     Spacer()
                 }
                 .padding(.bottom, 8)
@@ -280,12 +290,14 @@ public struct CalendarFeatureView: View {
             VStack(alignment: .leading, spacing: 8) {
                 HStack {
                     Button(action: { coordinator.pop() }) {
-                        HStack(spacing: 4) {
+                        HStack(spacing: AppSpacing.xSmall) {
                             Image(systemName: "chevron.left")
                             Text("Back")
                         }
-                        .foregroundColor(.blue)
+                        .foregroundStyle(AppColors.tint)
                     }
+                    .accessibilityLabel("Go back")
+                    .accessibilityHint("Returns to the previous screen")
                     Spacer()
                 }
                 .padding(.bottom, 8)
@@ -321,12 +333,14 @@ public struct ProfileFeatureView: View {
             VStack(alignment: .leading, spacing: 8) {
                 HStack {
                     Button(action: { coordinator.pop() }) {
-                        HStack(spacing: 4) {
+                        HStack(spacing: AppSpacing.xSmall) {
                             Image(systemName: "chevron.left")
                             Text("Back")
                         }
-                        .foregroundColor(.blue)
+                        .foregroundStyle(AppColors.tint)
                     }
+                    .accessibilityLabel("Go back")
+                    .accessibilityHint("Returns to the previous screen")
                     Spacer()
                 }
                 .padding(.bottom, 8)

@@ -1,40 +1,31 @@
 import SwiftUI
 
 struct LiquidTextField: View {
-
     let title: String
-
-    @Binding
-    var text: String
-
+    @Binding var text: String
     var systemImage: String
 
     var body: some View {
-
         HStack(spacing: AppSpacing.medium) {
-
             Image(systemName: systemImage)
                 .font(.title3)
-                .foregroundStyle(.secondary)
-                .frame(width: 22)
+                .foregroundStyle(AppColors.textSecondary)
+                .frame(width: AppSpacing.controlInset)
 
             TextField(title, text: $text)
-                .font(AppFonts.body)
+                .font(.body)
                 .textInputAutocapitalization(.never)
                 .autocorrectionDisabled()
-
+                .accessibilityLabel(title)
+                .accessibilityHint("Enter your \(title)")
         }
-
-        .padding(.horizontal, 22)
+        .padding(.horizontal, AppSpacing.controlInset)
         .frame(height: 60)
         .liquidGlass(.regular, cornerRadius: AppRadius.button)
-
     }
-
 }
 
 #Preview {
-
     @Previewable @State var text = ""
 
     LiquidTextField(
@@ -42,5 +33,4 @@ struct LiquidTextField: View {
         text: $text,
         systemImage: "envelope"
     )
-
 }

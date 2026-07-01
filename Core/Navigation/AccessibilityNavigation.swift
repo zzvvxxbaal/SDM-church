@@ -58,7 +58,7 @@ public struct AccessibleNavigationBar: View {
                         Image(systemName: "chevron.left")
                         Text("Back")
                     }
-                    .foregroundColor(.blue)
+                    .foregroundStyle(AppColors.tint)
                 }
                 .accessibilityLabel("Go back")
                 .accessibilityHint("Returns to the previous screen")
@@ -72,7 +72,7 @@ public struct AccessibleNavigationBar: View {
                 if let subtitle = subtitle {
                     Text(subtitle)
                         .font(.caption)
-                        .foregroundColor(.secondary)
+                        .foregroundStyle(AppColors.textSecondary)
                 }
             }
             

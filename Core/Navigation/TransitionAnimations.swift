@@ -43,7 +43,7 @@ public struct ModalPresentationStyle: ViewModifier {
         case .dialog:
             content
                 .frame(maxWidth: 300)
-                .background(Color(.systemBackground))
+                .background(AppColors.background)
                 .cornerRadius(12)
                 .shadow(radius: 20)
         case .alert:

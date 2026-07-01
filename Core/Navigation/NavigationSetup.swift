@@ -126,10 +126,10 @@ public struct NavigationSetupPreview: PreviewProvider {
                     .fontWeight(.bold)
                 
                 Text("All navigation infrastructure is configured and ready to use")
-                    .foregroundColor(.secondary)
+                    .foregroundStyle(AppColors.textSecondary)
             }
             .frame(maxWidth: .infinity, maxHeight: .infinity)
-            .background(Color(.systemBackground))
+            .background(AppColors.background)
         }
     }
 }

@@ -1,71 +1,61 @@
+import Observation
 import SwiftUI
 
 struct RootView: View {
-    @State private var appState = AppState()
-    @State private var coordinator = NavigationCoordinator()
-    @State private var tabBarCoordinator = TabBarCoordinator()
-    
+    @Environment(NavigationCoordinator.self) private var coordinator
+    @Environment(TabBarCoordinator.self) private var tabBarCoordinator
+
     var body: some View {
+        @Bindable var coordinator = coordinator
+        @Bindable var tabBarCoordinator = tabBarCoordinator
+
         ZStack(alignment: .bottom) {
             NavigationStack(path: $coordinator.navigationStack) {
                 TabView(selection: $tabBarCoordinator.selectedTab) {
-                    // Home Tab
                     HomeView()
                         .tag(0)
                         .tabItem {
-                            Image(systemName: "house.fill")
-                            Text("Home")
+                            Label("Home", systemImage: "house.fill")
                         }
-                    
-                    // Worship Tab
+
                     WorshipFeatureView()
                         .tag(1)
                         .tabItem {
-                            Image(systemName: "music.note")
-                            Text("Worship")
+                            Label("Worship", systemImage: "music.note")
                         }
-                    
-                    // Prayer Tab
+
                     PrayerFeatureView()
                         .tag(2)
                         .tabItem {
-                            Image(systemName: "hands.praying.fill")
-                            Text("Prayer")
+                            Label("Prayer", systemImage: "hands.praying.fill")
                         }
-                    
-                    // Community Tab
+
                     CommunityFeatureView()
                         .tag(3)
                         .tabItem {
-                            Image(systemName: "person.fill")
-                            Text("Community")
+                            Label("Community", systemImage: "person.fill")
                         }
-                    
-                    // Settings Tab
+
                     SettingsFeatureView()
                         .tag(4)
                         .tabItem {
-                            Image(systemName: "gear.fill")
-                            Text("Settings")
+                            Label("Settings", systemImage: "gear.fill")
                         }
                 }
                 .navigationDestination(for: AppRoute.self) { route in
                     destinationView(for: route)
                 }
             }
-            .environment(coordinator)
-            .environment(appState)
         }
-        .preferredColorScheme(.light)
+        .preferredColorScheme(nil)
         .tint(AppColors.tint)
-        .onChange(of: tabBarCoordinator.selectedTab) { oldValue, newValue in
+        .dynamicTypeNavigation()
+        .onChange(of: tabBarCoordinator.selectedTab) { _, newValue in
             coordinator.selectTab(newValue)
-            NavigationAccessibilityHelper.announceTabSwitch(
-                tabName: getTabName(newValue)
-            )
+            NavigationAccessibilityHelper.announceTabSwitch(tabName: tabName(for: newValue))
         }
     }
-    
+
     @ViewBuilder
     private func destinationView(for route: AppRoute) -> some View {
         switch route {
@@ -89,8 +79,8 @@ struct RootView: View {
             EmptyView()
         }
     }
-    
-    private func getTabName(_ index: Int) -> String {
+
+    private func tabName(for index: Int) -> String {
         switch index {
         case 0: return "Home"
         case 1: return "Worship"
@@ -103,5 +93,10 @@ struct RootView: View {
 }
 
 #Preview {
+    let appState = AppState()
+
     RootView()
+        .environment(appState)
+        .environment(appState.navigationCoordinator)
+        .environment(appState.tabBarCoordinator)
 }
