@@ -1,53 +1,35 @@
 import SwiftUI
 
 struct CommunityView: View {
-
-    @State
-    private var viewModel = CommunityViewModel()
+    private let viewModel = CommunityViewModel()
 
     var body: some View {
-
         ZStack {
-
             AppColors.background
                 .ignoresSafeArea()
 
             ScrollView {
-
-                VStack(spacing: AppSpacing.inset) {
-
+                LazyVStack(spacing: AppSpacing.inset) {
                     LiquidNavigationBar(
                         title: "소그룹"
                     )
-                    
-                     LeaderCard()
+
+                    LeaderCard()
 
                     ForEach(viewModel.groups, id: \.self) { group in
-
                         LiquidCard {
-
                             Label(
-
                                 group,
-
                                 systemImage: "person.3.fill"
-
                             )
-
                         }
-
+                        .id(group)
                     }
-
                 }
-
                 .padding(AppSpacing.large)
-
             }
-
         }
-
     }
-
 }
 
 #Preview {

@@ -27,6 +27,7 @@ struct PrayerSummaryCard: View {
                     .font(AppFonts.hero)
 
                     .foregroundStyle(AppColors.warning)
+                    .accessibilityHidden(true)
 
             }
 

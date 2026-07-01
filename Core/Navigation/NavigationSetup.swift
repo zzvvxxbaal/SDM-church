@@ -57,6 +57,7 @@ public struct NavigationSetupView<Content: View>: View {
     @State private var coordinator = NavigationCoordinator()
     @State private var appearanceManager = NavigationBarAppearanceManager()
     @State private var tabBarCoordinator = TabBarCoordinator()
+    @State private var navigationObserver: NSObjectProtocol?
     
     let content: () -> Content
     
@@ -69,10 +70,18 @@ public struct NavigationSetupView<Content: View>: View {
                 NavigationSetup.shared.configure()
                 setupNavigationNotifications()
             }
+            .onDisappear {
+                if let navigationObserver {
+                    NotificationCenter.default.removeObserver(navigationObserver)
+                    self.navigationObserver = nil
+                }
+            }
     }
     
     private func setupNavigationNotifications() {
-        NotificationCenter.default.addObserver(
+        guard navigationObserver == nil else { return }
+
+        navigationObserver = NotificationCenter.default.addObserver(
             forName: NSNotification.Name("NavigationDidChange"),
             object: nil,
             queue: .main

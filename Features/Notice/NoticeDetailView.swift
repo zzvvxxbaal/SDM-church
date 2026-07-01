@@ -22,7 +22,7 @@ struct NoticeDetailView: View {
 
                     Text(notice.summary)
 
-                        .font(.body)
+                        .font(AppFonts.body)
 
                 }
 

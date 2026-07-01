@@ -27,8 +27,8 @@ final class AppRouter {
     var selectedTab: Tab = .home
     var navigationCoordinator: NavigationCoordinator?
     
-    init() {
-        self.navigationCoordinator = NavigationCoordinator()
+    init(navigationCoordinator: NavigationCoordinator? = nil) {
+        self.navigationCoordinator = navigationCoordinator
     }
     
     func selectTab(_ tab: Tab) {

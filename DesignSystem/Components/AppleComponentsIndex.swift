@@ -84,7 +84,7 @@ import SwiftUI
 ///     showSeeAll: true,
 ///     seeAllAction: { /* handle tap */ }
 /// ) {
-///     // Section content here
+///     Text("Section content")
 ///     FeaturedVerseSection(
 ///         verse: "John 3:16",
 ///         reference: "John 3:16"

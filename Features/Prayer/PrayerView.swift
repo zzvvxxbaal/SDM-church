@@ -1,53 +1,35 @@
 import SwiftUI
 
 struct PrayerView: View {
-
-    @State
-    private var viewModel = PrayerViewModel()
+    private let viewModel = PrayerViewModel()
 
     var body: some View {
-
         ZStack {
-
             AppColors.background
                 .ignoresSafeArea()
 
             ScrollView {
-
-                VStack(spacing: AppSpacing.inset) {
-
+                LazyVStack(spacing: AppSpacing.inset) {
                     LiquidNavigationBar(
                         title: "기도"
                     )
 
-                     PrayerInputCard()
+                    PrayerInputCard()
 
                     ForEach(viewModel.prayers, id: \.self) { prayer in
-
                         LiquidCard {
-
                             Label(
-
                                 prayer,
-
                                 systemImage: "hands.sparkles.fill"
-
                             )
-
                         }
-
+                        .id(prayer)
                     }
-
                 }
-
                 .padding(AppSpacing.large)
-
             }
-
         }
-
     }
-
 }
 
 #Preview {

@@ -6,11 +6,11 @@ struct PrayerInputCard: View {
     var body: some View {
         LiquidCard {
             Text("기도제목 작성")
-                .font(.headline)
+                .font(AppFonts.headline)
                 .accessibilityAddTraits(.isHeader)
 
             TextEditor(text: $prayer)
-                .frame(height: 130)
+                .frame(minHeight: AppSpacing.section * 2 + AppSpacing.content)
                 .scrollContentBackground(.hidden)
                 .background(Color.clear)
                 .accessibilityLabel("기도제목")

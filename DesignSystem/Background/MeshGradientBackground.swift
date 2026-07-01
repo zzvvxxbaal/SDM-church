@@ -2,20 +2,15 @@ import SwiftUI
 
 struct MeshGradientBackground: View {
 
-    @State
-    private var animate = false
+    @Environment(\.colorScheme) private var colorScheme
+    @State private var animate = false
 
     var body: some View {
-
         TimelineView(.animation) { _ in
 
             ZStack {
 
-                Color(
-                    red: 245 / 255,
-                    green: 245 / 255,
-                    blue: 247 / 255
-                )
+                AppColors.backgroundElevated
 
                 Circle()
 
@@ -35,7 +30,7 @@ struct MeshGradientBackground: View {
                 Circle()
 
                     .fill(
-                        Color.white.opacity(0.85)
+                        (colorScheme == .dark ? AppColors.surfaceSecondary : .white).opacity(colorScheme == .dark ? 0.35 : 0.85)
                     )
 
                     .frame(width: 500)
@@ -67,19 +62,17 @@ struct MeshGradientBackground: View {
             .ignoresSafeArea()
 
             .onAppear {
+                guard !animate else { return }
 
                 withAnimation(
-
                     .linear(duration: 18)
-
                         .repeatForever(autoreverses: true)
-
                 ) {
-
                     animate = true
-
                 }
-
+            }
+            .onDisappear {
+                animate = false
             }
 
         }

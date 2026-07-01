@@ -5,16 +5,11 @@ struct GlassEnvironmentAwareRenderer: ViewModifier {
     let cornerRadius: CGFloat
     let configuration: GlassConfiguration
     
-    @StateObject private var environment = GlassEnvironment.shared
+    @State private var environment = GlassEnvironment.shared
     @State private var motion = DeviceMotionManager()
-    @State private var displayLink: CADisplayLink?
     @Environment(\.colorScheme) var colorScheme
     
     func body(content: Content) -> some View {
-        let dynamicBlurRadius = environment.performanceMode == .performance ?
-            materialType.blurRadius * 0.7 :
-            materialType.blurRadius * (1.0 + environment.ambientLighting * 0.2)
-        
         let dynamicOpacity = materialType.opacity * environment.ambientLighting
         
         return ZStack {

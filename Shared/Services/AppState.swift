@@ -5,21 +5,21 @@ import SwiftUI
 final class AppState {
 
     var isLoggedIn = true
-
     var userName = "정현석"
-    
-    var navigationCoordinator: NavigationCoordinator = NavigationCoordinator()
-    var navigationManager: NavigationManager?
-    var appRouter: AppRouter = AppRouter()
-    var tabBarCoordinator: TabBarCoordinator = TabBarCoordinator()
+    var notificationsEnabled = true
+    var isDarkModeEnabled = false
+
+    let navigationCoordinator = NavigationCoordinator()
+    let navigationManager: NavigationManager
+    let appRouter: AppRouter
+    let tabBarCoordinator = TabBarCoordinator()
+
+    var preferredColorScheme: ColorScheme {
+        isDarkModeEnabled ? .dark : .light
+    }
     
     init() {
         navigationManager = NavigationManager(coordinator: navigationCoordinator)
-        setupNavigation()
+        appRouter = AppRouter(navigationCoordinator: navigationCoordinator)
     }
-    
-    private func setupNavigation() {
-        appRouter.navigationCoordinator = navigationCoordinator
-    }
-
 }

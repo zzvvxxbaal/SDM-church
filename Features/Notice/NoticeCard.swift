@@ -28,7 +28,7 @@ struct NoticeCard: View {
 
                     Text(notice.date)
 
-                        .font(.caption)
+                        .font(AppFonts.caption1)
 
                         .foregroundStyle(.tertiary)
 
@@ -39,6 +39,7 @@ struct NoticeCard: View {
                 Image(systemName: "chevron.right")
 
                     .foregroundStyle(.tertiary)
+                    .accessibilityHidden(true)
 
             }
 

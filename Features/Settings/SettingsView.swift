@@ -1,37 +1,41 @@
+import Observation
 import SwiftUI
 
 struct SettingsView: View {
-    @State private var viewModel = SettingsViewModel()
-    @State private var notification = true
-    @State private var darkMode = false
+    @Environment(AppState.self) private var appState
+    private let viewModel = SettingsViewModel()
 
     var body: some View {
-        ZStack {
+        @Bindable var appState = appState
+
+        return ZStack {
             MeshGradientBackground()
 
             ScrollView {
-                VStack(spacing: AppSpacing.content) {
+                LazyVStack(spacing: AppSpacing.content) {
                     LiquidLargeTitle(
                         title: "설정",
                         subtitle: "앱 환경"
                     )
 
-                    Toggle("알림", isOn: $notification)
+                    Toggle("알림", isOn: $appState.notificationsEnabled)
                         .toggleStyle(LiquidToggle())
                         .accessibilityLabel("알림")
-                        .accessibilityValue(notification ? "켜짐" : "꺼짐")
+                        .accessibilityValue(appState.notificationsEnabled ? "켜짐" : "꺼짐")
 
-                    Toggle("다크 모드", isOn: $darkMode)
+                    Toggle("다크 모드", isOn: $appState.isDarkModeEnabled)
                         .toggleStyle(LiquidToggle())
                         .accessibilityLabel("다크 모드")
-                        .accessibilityValue(darkMode ? "켜짐" : "꺼짐")
+                        .accessibilityValue(appState.isDarkModeEnabled ? "켜짐" : "꺼짐")
+
+                    AboutCard()
+                        .id("about-card")
 
                     ForEach(viewModel.items) { item in
-                        AboutCard()
-
                         LiquidListRow {
                             Label(item.title, systemImage: item.icon)
                         }
+                        .id(item.id)
                         .accessibilityElement(children: .combine)
                         .accessibilityLabel(item.title)
                     }

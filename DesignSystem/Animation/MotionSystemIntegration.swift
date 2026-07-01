@@ -214,7 +214,7 @@ public struct ComponentMotionPresets {
         LoadingStateAnimation(duration: 2.0)
     }
     
-    /// Empty state placeholder animation
+    /// Empty state animation preset
     public static func emptyPlaceholderPreset() -> some ViewModifier {
         EmptyStateAnimation(scale: 0.95, duration: 1.5)
     }

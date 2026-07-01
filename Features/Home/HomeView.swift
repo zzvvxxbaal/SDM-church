@@ -6,11 +6,12 @@ struct HomeView: View {
             MeshGradientBackground()
 
             ScrollView {
-                VStack(spacing: AppSpacing.large) {
+                LazyVStack(spacing: AppSpacing.large) {
                     LiquidLargeTitle(
                         title: "서대문교회",
                         subtitle: "청년부"
                     )
+                    .id("home-title")
 
                     HomeHeader()
                     QuickMenu()
@@ -35,6 +36,7 @@ struct HomeView: View {
                             icon: "church"
                         )
                     )
+                    .id("home-card-worship")
 
                     HomeCard(
                         section: .init(
@@ -43,6 +45,7 @@ struct HomeView: View {
                             icon: "megaphone.fill"
                         )
                     )
+                    .id("home-card-notice")
 
                     HomeCard(
                         section: .init(
@@ -51,9 +54,10 @@ struct HomeView: View {
                             icon: "person.3.fill"
                         )
                     )
+                    .id("home-card-group")
 
                     Color.clear
-                        .frame(height: 120)
+                        .frame(minHeight: AppSpacing.section * 2 + AppSpacing.large)
                 }
                 .padding(.horizontal, AppSpacing.large)
                 .padding(.top, AppSpacing.large)
@@ -62,14 +66,19 @@ struct HomeView: View {
             FloatingGlassTabBar {
                 Spacer()
                 Image(systemName: "house.fill")
+                    .accessibilityHidden(true)
                 Spacer()
                 Image(systemName: "calendar")
+                    .accessibilityHidden(true)
                 Spacer()
                 Image(systemName: "hands.sparkles.fill")
+                    .accessibilityHidden(true)
                 Spacer()
                 Image(systemName: "person.3.fill")
+                    .accessibilityHidden(true)
                 Spacer()
                 Image(systemName: "gearshape.fill")
+                    .accessibilityHidden(true)
                 Spacer()
             }
             .padding(.horizontal, AppSpacing.inset)
@@ -83,4 +92,5 @@ struct HomeView: View {
 
 #Preview {
     HomeView()
+        .environment(AppState())
 }

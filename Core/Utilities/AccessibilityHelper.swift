@@ -5,11 +5,6 @@ enum AccessibilityHelper {
     static let minTapTargetSize: CGFloat = 44
     static let minInteractiveSize: CGFloat = 44
     
-    static func setAccessibilityLabel(_ label: String) -> some View {
-        EmptyView()
-            .accessibilityLabel(label)
-    }
-    
     static func formatForAccessibility(_ value: String) -> String {
         value
             .replacingOccurrences(of: "  ", with: " ")

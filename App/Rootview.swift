@@ -2,6 +2,7 @@ import Observation
 import SwiftUI
 
 struct RootView: View {
+    @Environment(AppState.self) private var appState
     @Environment(NavigationCoordinator.self) private var coordinator
     @Environment(TabBarCoordinator.self) private var tabBarCoordinator
 
@@ -20,7 +21,7 @@ struct RootView: View {
                         .accessibilityLabel("Home tab")
                         .accessibilityIdentifier("tab-home")
 
-                    WorshipFeatureView()
+                    WorshipView()
                         .tag(1)
                         .tabItem {
                             Label("Worship", systemImage: "music.note")
@@ -28,7 +29,7 @@ struct RootView: View {
                         .accessibilityLabel("Worship tab")
                         .accessibilityIdentifier("tab-worship")
 
-                    PrayerFeatureView()
+                    PrayerView()
                         .tag(2)
                         .tabItem {
                             Label("Prayer", systemImage: "hands.praying.fill")
@@ -36,7 +37,7 @@ struct RootView: View {
                         .accessibilityLabel("Prayer tab")
                         .accessibilityIdentifier("tab-prayer")
 
-                    CommunityFeatureView()
+                    CommunityView()
                         .tag(3)
                         .tabItem {
                             Label("Community", systemImage: "person.fill")
@@ -44,7 +45,7 @@ struct RootView: View {
                         .accessibilityLabel("Community tab")
                         .accessibilityIdentifier("tab-community")
 
-                    SettingsFeatureView()
+                    SettingsView()
                         .tag(4)
                         .tabItem {
                             Label("Settings", systemImage: "gear.fill")
@@ -57,7 +58,7 @@ struct RootView: View {
                 }
             }
         }
-        .preferredColorScheme(nil)
+        .preferredColorScheme(appState.preferredColorScheme)
         .tint(AppColors.tint)
         .dynamicTypeNavigation()
         .onChange(of: tabBarCoordinator.selectedTab) { _, newValue in
@@ -79,21 +80,21 @@ struct RootView: View {
         case .home:
             HomeView()
         case .worship:
-            WorshipFeatureView()
+            WorshipView()
         case .prayer:
-            PrayerFeatureView()
+            PrayerView()
         case .notice:
-            NoticeFeatureView()
+            NoticeView()
         case .calendar:
-            CalendarFeatureView()
+            CalendarView()
         case .community:
-            CommunityFeatureView()
+            CommunityView()
         case .profile:
-            ProfileFeatureView()
+            ProfileView()
         case .settings:
-            SettingsFeatureView()
+            SettingsView()
         case .authentication:
-            EmptyView()
+            LoginView()
         }
     }
 

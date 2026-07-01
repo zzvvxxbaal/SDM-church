@@ -10,15 +10,17 @@ struct SummaryStatistic: Identifiable {
 }
 
 struct PersonalizedSummarySection: View {
+    private static let defaultStatistics = [
+        SummaryStatistic(id: "1", icon: "checkmark.circle.fill", title: "이번 달 출석", value: "4", subtitle: "/ 5회", color: .blue),
+        SummaryStatistic(id: "2", icon: "hands.sparkles.fill", title: "기도 횟수", value: "23", subtitle: "회", color: .pink),
+        SummaryStatistic(id: "3", icon: "calendar", title: "참석 행사", value: "8", subtitle: "개", color: .green),
+        SummaryStatistic(id: "4", icon: "star.fill", title: "봉사 시간", value: "12", subtitle: "시간", color: .orange)
+    ]
+
     let statistics: [SummaryStatistic]
 
     init(statistics: [SummaryStatistic]? = nil) {
-        self.statistics = statistics ?? [
-            SummaryStatistic(id: "1", icon: "checkmark.circle.fill", title: "이번 달 출석", value: "4", subtitle: "/ 5회", color: .blue),
-            SummaryStatistic(id: "2", icon: "hands.sparkles.fill", title: "기도 횟수", value: "23", subtitle: "회", color: .pink),
-            SummaryStatistic(id: "3", icon: "calendar", title: "참석 행사", value: "8", subtitle: "개", color: .green),
-            SummaryStatistic(id: "4", icon: "star.fill", title: "봉사 시간", value: "12", subtitle: "시간", color: .orange)
-        ]
+        self.statistics = statistics ?? Self.defaultStatistics
     }
 
     var body: some View {
@@ -51,12 +53,12 @@ struct SummaryStatisticCard: View {
         VStack(alignment: .leading, spacing: AppSpacing.medium) {
             HStack(spacing: AppSpacing.small) {
                 Image(systemName: statistic.icon)
-                    .font(.headline)
+                    .font(AppFonts.headline)
                     .foregroundStyle(statistic.color)
                     .accessibilityHidden(true)
 
                 Text(statistic.title)
-                    .font(.caption.weight(.semibold))
+                    .font(AppFonts.caption1)
                     .foregroundStyle(AppColors.textSecondary)
                     .lineLimit(1)
                     .minimumScaleFactor(0.8)
@@ -64,7 +66,7 @@ struct SummaryStatisticCard: View {
 
             HStack(alignment: .firstTextBaseline, spacing: AppSpacing.xxs) {
                 Text(statistic.value)
-                    .font(.title2.weight(.bold))
+                    .font(AppFonts.title2)
                     .foregroundStyle(statistic.color)
                     .lineLimit(1)
                     .minimumScaleFactor(0.8)
@@ -78,8 +80,7 @@ struct SummaryStatisticCard: View {
 
             Spacer()
         }
-        .frame(maxWidth: .infinity, alignment: .leading)
-        .frame(height: 120)
+        .frame(maxWidth: .infinity, minHeight: AppSpacing.section * 2 + AppSpacing.large, alignment: .leading)
         .padding(AppSpacing.medium)
         .liquidGlass(.card, cornerRadius: AppRadius.card)
         .accessibilityElement(children: .combine)

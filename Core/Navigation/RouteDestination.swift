@@ -38,23 +38,23 @@ public struct DefaultNavigationStackResolver: NavigationStackResolver {
     public func resolve(_ route: AppRoute) -> some View {
         switch route {
         case .home:
-            EmptyView()
+            HomeView()
         case .worship:
-            EmptyView()
+            WorshipView()
         case .prayer:
-            EmptyView()
+            PrayerView()
         case .notice:
-            EmptyView()
+            NoticeView()
         case .calendar:
-            EmptyView()
+            CalendarView()
         case .community:
-            EmptyView()
+            CommunityView()
         case .profile:
-            EmptyView()
+            ProfileView()
         case .settings:
-            EmptyView()
+            SettingsView()
         case .authentication:
-            EmptyView()
+            LoginView()
         }
     }
 }

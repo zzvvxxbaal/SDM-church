@@ -40,12 +40,11 @@ private struct QuickActionButton: View {
                     .accessibilityHidden(true)
 
                 Text(title)
-                    .font(.subheadline.weight(.semibold))
+                    .font(AppFonts.subheadline)
                     .lineLimit(1)
                     .minimumScaleFactor(0.8)
             }
-            .frame(maxWidth: .infinity)
-            .frame(height: 100)
+            .frame(maxWidth: .infinity, minHeight: AccessibilityHelper.minInteractiveSize * 2)
             .liquidGlass(.card, cornerRadius: AppRadius.card)
             .buttonPress(isPressed: isPressed, scale: 0.95, opacity: 0.85, hapticFeedback: true)
         }

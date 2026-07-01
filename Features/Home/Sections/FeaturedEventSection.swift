@@ -33,8 +33,9 @@ struct FeaturedEventSection: View {
         self.onRegister = onRegister
     }
 
-    var occupancyPercentage: Double {
-        Double(rsvpCount) / Double(maxAttendees)
+    private var occupancyPercentage: Double {
+        guard maxAttendees > 0 else { return 0 }
+        return Double(rsvpCount) / Double(maxAttendees)
     }
 
     var body: some View {
@@ -46,7 +47,7 @@ struct FeaturedEventSection: View {
             ) {
                 VStack(alignment: .leading, spacing: AppSpacing.medium) {
                     Text(description)
-                        .font(.subheadline)
+                        .font(AppFonts.subheadline)
                         .foregroundStyle(AppColors.textSecondary)
                         .lineLimit(2)
                         .minimumScaleFactor(0.85)
@@ -61,12 +62,12 @@ struct FeaturedEventSection: View {
                     VStack(alignment: .leading, spacing: AppSpacing.small) {
                         HStack(spacing: AppSpacing.none) {
                             Text("참석 현황")
-                                .font(.caption.weight(.semibold))
+                                .font(AppFonts.caption1)
 
                             Spacer()
 
                             Text("\(rsvpCount) / \(maxAttendees)명")
-                                .font(.caption.weight(.semibold))
+                                .font(AppFonts.caption1)
                                 .foregroundStyle(AppColors.textSecondary)
                                 .lineLimit(1)
                                 .minimumScaleFactor(0.8)
@@ -81,26 +82,25 @@ struct FeaturedEventSection: View {
                     if !isRegistered {
                         Button(action: { onRegister?() }) {
                             Text("참석하기")
-                                .font(.subheadline.weight(.semibold))
+                                .font(AppFonts.subheadline)
                         }
                         .buttonStyle(LiquidButton())
-                        .frame(height: 40)
+                        .frame(minHeight: AccessibilityHelper.minInteractiveSize)
                         .accessibilityLabel("참석하기")
                         .accessibilityHint("행사 참석을 등록합니다")
                         .accessibilityAddTraits(.isButton)
                     } else {
                         HStack(spacing: AppSpacing.small) {
                             Image(systemName: "checkmark.circle.fill")
-                                .font(.subheadline.weight(.semibold))
+                                .font(AppFonts.subheadline)
                                 .foregroundStyle(AppColors.success)
                                 .accessibilityHidden(true)
                             Text("참석 확정")
-                                .font(.caption.weight(.semibold))
+                                .font(AppFonts.caption1)
                                 .lineLimit(1)
                                 .minimumScaleFactor(0.8)
                         }
-                        .frame(maxWidth: .infinity)
-                        .frame(height: 40)
+                        .frame(maxWidth: .infinity, minHeight: AccessibilityHelper.minInteractiveSize)
                         .background(AppColors.successSoft)
                         .cornerRadius(AppRadius.medium)
                         .accessibilityElement(children: .combine)
@@ -115,10 +115,10 @@ struct FeaturedEventSection: View {
     private func detailRow(icon: String, text: String) -> some View {
         HStack(spacing: AppSpacing.xSmall) {
             Image(systemName: icon)
-                .font(.caption.weight(.semibold))
+                .font(AppFonts.caption1)
                 .accessibilityHidden(true)
             Text(text)
-                .font(.caption.weight(.semibold))
+                .font(AppFonts.caption1)
                 .lineLimit(1)
                 .minimumScaleFactor(0.8)
         }

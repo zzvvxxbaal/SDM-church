@@ -1,51 +1,29 @@
 import SwiftUI
 
 struct CalendarView: View {
-
-    @State
-
-    private var viewModel = CalendarViewModel()
+    private let viewModel = CalendarViewModel()
 
     var body: some View {
-
         ZStack {
-
             MeshGradientBackground()
 
             ScrollView {
-
-                VStack(spacing: AppSpacing.large) {
-
+                LazyVStack(spacing: AppSpacing.large) {
                     LiquidLargeTitle(
-
                         title: "일정",
-
                         subtitle: "이번 주"
-
                     )
-                    
-                     CalendarMonthHeader()
+                    CalendarMonthHeader()
 
-                    ForEach(viewModel.events) {
-
-                        EventCard(
-
-                            event: $0
-
-                        )
-
+                    ForEach(viewModel.events) { event in
+                        EventCard(event: event)
+                            .id(event.id)
                     }
-
                 }
-
                 .padding(AppSpacing.large)
-
             }
-
         }
-
     }
-
 }
 
 #Preview {

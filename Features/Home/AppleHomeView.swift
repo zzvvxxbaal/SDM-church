@@ -1,26 +1,30 @@
 import SwiftUI
 
 struct AppleHomeView: View {
+    @Environment(AppState.self) private var appState
     @State private var scrollOffset: CGFloat = 0
-    @State private var largeTitle = true
+
+    private var isLargeTitle: Bool {
+        scrollOffset < 50
+    }
 
     var body: some View {
         ZStack(alignment: .bottom) {
             MeshGradientBackground()
 
             ScrollView {
-                VStack(spacing: AppSpacing.none) {
+                LazyVStack(spacing: AppSpacing.none) {
                     VStack(alignment: .leading, spacing: AppSpacing.xsWide) {
                         Text("서대문교회")
-                            .font(largeTitle ? AppFonts.largeTitle : AppFonts.title)
+                            .font(isLargeTitle ? AppFonts.largeTitle : AppFonts.title)
                             .lineLimit(1)
                             .minimumScaleFactor(0.75)
-                            .animation(.spring(response: 0.3, dampingFraction: 0.8), value: largeTitle)
+                            .animation(.spring(response: 0.3, dampingFraction: 0.8), value: isLargeTitle)
                             .accessibilityAddTraits(.isHeader)
 
-                        if largeTitle {
+                        if isLargeTitle {
                             Text("청년부")
-                                .font(.headline)
+                                .font(AppFonts.headline)
                                 .foregroundStyle(AppColors.textSecondary)
                                 .lineLimit(1)
                                 .minimumScaleFactor(0.85)
@@ -30,9 +34,10 @@ struct AppleHomeView: View {
                     .frame(maxWidth: .infinity, alignment: .leading)
                     .padding(.horizontal, AppSpacing.large)
                     .padding(.vertical, AppSpacing.large)
+                    .id("apple-home-title")
 
-                    VStack(spacing: AppSpacing.large) {
-                        GreetingSection(userName: "정현석님", userInitials: "정")
+                    LazyVStack(spacing: AppSpacing.large) {
+                        GreetingSection(userName: "\(appState.userName)님", userInitials: String(appState.userName.prefix(1)))
                         FeaturedVerseSection(
                             verse: "너희는 먼저 그의 나라와 그의 의를 구하라. 그리하면 이 모든 것을 너희에게 더하시리라.",
                             reference: "마태복음 6:33",
@@ -47,44 +52,52 @@ struct AppleHomeView: View {
                         PersonalizedSummarySection()
 
                         AppleSection(title: "더보기", size: .medium) {
-                            VStack(spacing: AppSpacing.medium) {
+                            LazyVStack(spacing: AppSpacing.medium) {
                                 AttendanceCard()
                                 PrayerSummaryCard()
                                 WeeklyVerseCard()
                             }
                             .padding(.horizontal, AppSpacing.large)
                         }
+                        .id("apple-home-more")
                     }
                     .padding(.vertical, AppSpacing.large)
 
                     Color.clear
-                        .frame(height: 120)
+                        .frame(minHeight: AppSpacing.section * 2 + AppSpacing.large)
                 }
             }
             .onScrollGeometryChange(for: CGFloat.self, of: { $0.contentOffset.y }, initial: 0) { _, newValue in
                 scrollOffset = newValue
-                largeTitle = scrollOffset < 50
             }
 
             FloatingGlassTabBar {
                 Spacer()
                 Image(systemName: "house.fill")
+                    .accessibilityHidden(true)
                 Spacer()
                 Image(systemName: "calendar")
+                    .accessibilityHidden(true)
                 Spacer()
                 Image(systemName: "hands.sparkles.fill")
+                    .accessibilityHidden(true)
                 Spacer()
                 Image(systemName: "person.3.fill")
+                    .accessibilityHidden(true)
                 Spacer()
                 Image(systemName: "gearshape.fill")
+                    .accessibilityHidden(true)
                 Spacer()
             }
             .padding(.horizontal, AppSpacing.inset)
             .padding(.bottom, AppSpacing.medium)
+            .accessibilityElement(children: .ignore)
+            .accessibilityLabel("Quick tab bar")
         }
     }
 }
 
 #Preview {
     AppleHomeView()
+        .environment(AppState())
 }

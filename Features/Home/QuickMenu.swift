@@ -76,13 +76,14 @@ struct QuickMenu: View {
 
                 Image(systemName: image)
 
-                    .font(.title3)
+                    .font(AppFonts.title3)
+                    .accessibilityHidden(true)
 
             }
 
             Text(title)
 
-                .font(.caption)
+                .font(AppFonts.caption1)
 
         }
 

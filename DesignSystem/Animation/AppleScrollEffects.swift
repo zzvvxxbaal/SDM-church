@@ -119,14 +119,19 @@ struct FloatingButtonModifier: ViewModifier {
     func body(content: Content) -> some View {
         content
             .offset(y: isFloating ? -8 : 0)
-            .shadow(color: Color.black.opacity(0.2), radius: isFloating ? 12 : 4, x: 0, y: isFloating ? 8 : 2)
+            .shadow(color: AppColors.glassShadow.opacity(0.6), radius: isFloating ? 12 : 4, x: 0, y: isFloating ? 8 : 2)
             .onAppear {
+                guard !isFloating else { return }
+
                 withAnimation(
                     Animation.easeInOut(duration: 2)
                         .repeatForever(autoreverses: true)
                 ) {
                     isFloating = true
                 }
+            }
+            .onDisappear {
+                isFloating = false
             }
     }
 }

@@ -322,8 +322,6 @@ public struct CompleteFeatureExample: View {
                         appearanceManager.updateScrollOffset(offset)
                     }
                     
-                    // Feature content here
-                    
                     Button("Navigate to Next") {
                         coordinator.navigate(to: .prayer)
                     }

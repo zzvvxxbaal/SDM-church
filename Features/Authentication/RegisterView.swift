@@ -7,9 +7,9 @@ struct RegisterView: View {
 
     var body: some View {
         ScrollView {
-            VStack(spacing: AppSpacing.inset) {
+            LazyVStack(spacing: AppSpacing.inset) {
                 Text("회원가입")
-                    .font(.largeTitle.weight(.bold))
+                    .font(AppFonts.largeTitle)
                     .lineLimit(1)
                     .minimumScaleFactor(0.75)
 

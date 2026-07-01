@@ -9,17 +9,17 @@ struct LoginView: View {
                 .ignoresSafeArea()
 
             ScrollView(.vertical, showsIndicators: false) {
-                VStack(spacing: AppSpacing.xLarge) {
+                LazyVStack(spacing: AppSpacing.xLarge) {
                     Spacer()
 
                     VStack(spacing: AppSpacing.compact) {
                         Text("서대문교회")
-                            .font(.largeTitle.weight(.bold))
+                            .font(AppFonts.largeTitle)
                             .lineLimit(1)
                             .minimumScaleFactor(0.75)
 
                         Text("청년부")
-                            .font(.headline)
+                            .font(AppFonts.headline)
                             .foregroundStyle(AppColors.textSecondary)
                     }
 
