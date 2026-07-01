@@ -16,7 +16,7 @@ struct LiquidDialog<Content: View>: View {
 
         .padding(28)
 
-        .glass()
+        .liquidGlass(.thick, cornerRadius: AppRadius.dialog)
 
     }
 

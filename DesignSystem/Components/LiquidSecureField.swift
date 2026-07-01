@@ -53,7 +53,7 @@ struct LiquidSecureField: View {
 
         .padding(.horizontal, 22)
         .frame(height: 60)
-        .glass()
+        .liquidGlass(.regular, cornerRadius: AppRadius.button)
 
     }
 

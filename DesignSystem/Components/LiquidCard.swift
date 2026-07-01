@@ -18,7 +18,7 @@ struct LiquidCard<Content: View>: View {
 
         .frame(maxWidth: .infinity)
 
-        .glass()
+        .liquidGlass(.card, cornerRadius: AppRadius.card)
 
     }
 

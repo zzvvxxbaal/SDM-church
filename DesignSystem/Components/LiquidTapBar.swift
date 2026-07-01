@@ -48,7 +48,7 @@ struct LiquidTabBar: View {
 
         .frame(height:70)
 
-        .glass()
+        .liquidGlass(.navigation, cornerRadius: AppRadius.sheet)
 
     }
 

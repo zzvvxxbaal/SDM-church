@@ -26,7 +26,7 @@ struct LiquidNavigationBar: View {
 
         .frame(height:64)
 
-        .glass()
+        .liquidGlass(.navigation, cornerRadius: AppRadius.sheet)
 
     }
 

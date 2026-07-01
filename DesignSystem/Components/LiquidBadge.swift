@@ -14,7 +14,7 @@ struct LiquidBadge: View {
 
             .padding(.vertical,7)
 
-            .glass()
+            .liquidGlass(.capsule, cornerRadius: 10)
 
     }
 

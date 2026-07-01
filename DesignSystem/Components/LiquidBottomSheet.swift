@@ -24,7 +24,7 @@ struct LiquidBottomSheet<Content: View>: View {
 
         .padding(24)
 
-        .glass()
+        .liquidGlass(.thick, cornerRadius: AppRadius.sheet)
 
     }
 

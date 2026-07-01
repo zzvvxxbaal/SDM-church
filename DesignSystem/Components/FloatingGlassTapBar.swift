@@ -18,7 +18,7 @@ struct FloatingGlassTabBar<Content: View>: View {
 
         .padding(.vertical,14)
 
-        .glass()
+        .liquidGlass(.floating, cornerRadius: 26)
 
         .shadow(
 

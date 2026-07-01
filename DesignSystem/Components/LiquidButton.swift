@@ -12,16 +12,12 @@ struct LiquidButton: ButtonStyle {
 
             .frame(height: 60)
 
-            .glass()
+            .liquidGlass(.button, cornerRadius: AppRadius.button)
 
-            .modifier(
-
-                GlassMorph(
-
-                    pressed: configuration.isPressed
-
-                )
-
+            .pressAnimation(
+                pressed: configuration.isPressed,
+                scale: 0.95,
+                rotation: 1.0
             )
 
     }

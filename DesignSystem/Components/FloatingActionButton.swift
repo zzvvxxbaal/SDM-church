@@ -34,7 +34,7 @@ struct FloatingActionButton: View {
 
         .buttonStyle(.plain)
 
-        .glass()
+        .liquidGlass(.floating, cornerRadius: 32)
 
     }
 

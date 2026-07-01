@@ -19,7 +19,7 @@ struct LiquidSearchBar: View {
 
         .frame(height:56)
 
-        .glass()
+        .liquidGlass(.toolbar, cornerRadius: AppRadius.small)
 
     }
 

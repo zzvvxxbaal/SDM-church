@@ -22,7 +22,7 @@ struct LiquidListRow<Content: View>: View {
 
         .padding(20)
 
-        .glass()
+        .liquidGlass(.card, cornerRadius: AppRadius.card)
 
     }
 

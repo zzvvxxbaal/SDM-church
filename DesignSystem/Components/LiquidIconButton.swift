@@ -20,7 +20,7 @@ struct LiquidIconButton: View {
 
         .buttonStyle(.plain)
 
-        .glass()
+        .liquidGlass(.button, cornerRadius: 26)
 
     }
 
