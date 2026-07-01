@@ -169,11 +169,11 @@ public extension View {
 private struct GlassBackgroundView: View {
     var body: some View {
         ZStack {
-            Color.white.opacity(0.2)
+            AppColors.glass
 
             LinearGradient(
                 gradient: Gradient(colors: [
-                    Color.white.opacity(0.3),
+                    AppColors.glassHighlight,
                     Color.white.opacity(0.1)
                 ]),
                 startPoint: .topLeading,
@@ -181,6 +181,6 @@ private struct GlassBackgroundView: View {
             )
         }
         .blur(radius: 20)
-        .mask(RoundedRectangle(cornerRadius: 12, style: .continuous))
+        .mask(RoundedRectangle(cornerRadius: AppRadius.small, style: .continuous))
     }
 }

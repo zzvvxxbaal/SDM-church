@@ -44,6 +44,7 @@ struct LoginView: View {
                         .buttonStyle(LiquidButton())
                         .accessibilityLabel("로그인")
                         .accessibilityHint("입력한 계정으로 로그인합니다")
+                        .accessibilityAddTraits(.isButton)
 
                         Button {
                         } label: {
@@ -52,6 +53,7 @@ struct LoginView: View {
                         .buttonStyle(LiquidButton())
                         .accessibilityLabel("Google로 계속하기")
                         .accessibilityHint("Google 계정으로 로그인합니다")
+                        .accessibilityAddTraits(.isButton)
 
                         Button {
                         } label: {
@@ -60,6 +62,7 @@ struct LoginView: View {
                         .buttonStyle(LiquidButton())
                         .accessibilityLabel("카카오로 계속하기")
                         .accessibilityHint("카카오 계정으로 로그인합니다")
+                        .accessibilityAddTraits(.isButton)
 
                         Button {
                         } label: {
@@ -68,6 +71,7 @@ struct LoginView: View {
                         .buttonStyle(LiquidButton())
                         .accessibilityLabel("회원가입")
                         .accessibilityHint("새 계정을 만듭니다")
+                        .accessibilityAddTraits(.isButton)
                     }
                 }
                 .padding(.horizontal, AppSpacing.large)

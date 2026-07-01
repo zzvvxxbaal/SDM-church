@@ -16,13 +16,13 @@ struct LiquidBottomSheet<Content: View>: View {
 
                 .frame(width:44,height:5)
 
-                .padding(.top,12)
+                .padding(.top, AppSpacing.compact)
 
             content
 
         }
 
-        .padding(24)
+        .padding(AppSpacing.large)
 
         .liquidGlass(.thick, cornerRadius: AppRadius.sheet)
 

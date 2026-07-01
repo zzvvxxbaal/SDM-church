@@ -1,25 +1,15 @@
 import SwiftUI
 
 struct LiquidCard<Content: View>: View {
-
-    @ViewBuilder
-
-    let content: Content
+    @ViewBuilder let content: Content
 
     var body: some View {
-
-        VStack(alignment: .leading, spacing: 16) {
-
+        VStack(alignment: .leading, spacing: AppSpacing.medium) {
             content
-
         }
-
-        .padding(24)
-
+        .padding(AppSpacing.large)
         .frame(maxWidth: .infinity)
-
         .liquidGlass(.card, cornerRadius: AppRadius.card)
-
+        .accessibilityElement(children: .combine)
     }
-
 }

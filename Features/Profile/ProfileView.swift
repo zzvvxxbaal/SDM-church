@@ -14,7 +14,7 @@ struct ProfileView: View {
 
             ScrollView {
 
-                VStack(spacing: 24) {
+                VStack(spacing: AppSpacing.large) {
 
                     LiquidLargeTitle(
 
@@ -58,7 +58,7 @@ struct ProfileView: View {
 
                 }
 
-                .padding(24)
+                .padding(AppSpacing.large)
 
             }
 

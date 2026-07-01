@@ -13,7 +13,7 @@ struct WorshipView: View {
 
             ScrollView(.vertical, showsIndicators: false) {
 
-                VStack(spacing: 24) {
+                VStack(spacing: AppSpacing.large) {
 
                     LiquidLargeTitle(
 
@@ -27,7 +27,7 @@ struct WorshipView: View {
 
                     LiquidCard {
 
-                        VStack(alignment: .leading, spacing: 16) {
+                        VStack(alignment: .leading, spacing: AppSpacing.medium) {
 
                             Label(
 
@@ -57,9 +57,9 @@ struct WorshipView: View {
 
                 }
 
-                .padding(.horizontal, 24)
+                .padding(.horizontal, AppSpacing.large)
 
-                .padding(.top, 24)
+                .padding(.top, AppSpacing.large)
 
             }
 

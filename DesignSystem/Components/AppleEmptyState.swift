@@ -27,17 +27,19 @@ struct AppleEmptyState: View {
                 .frame(height: AppSpacing.xxLarge)
             
             Image(systemName: icon)
-                .font(.system(size: 56, weight: .thin))
+                .font(.largeTitle.weight(.thin))
                 .foregroundStyle(AppColors.tint.opacity(0.6))
+                .accessibilityLabel(title)
+                .accessibilityHidden(subtitle != nil)
             
             VStack(spacing: AppSpacing.medium) {
                 Text(title)
-                    .font(.system(size: 20, weight: .semibold))
+                    .font(AppFonts.title3)
                     .multilineTextAlignment(.center)
                 
                 if let subtitle = subtitle {
                     Text(subtitle)
-                        .font(.system(size: 15, weight: .regular))
+                        .font(AppFonts.subheadline)
                         .foregroundStyle(.secondary)
                         .multilineTextAlignment(.center)
                 }
@@ -46,11 +48,14 @@ struct AppleEmptyState: View {
             if let actionTitle = actionTitle, let action = action {
                 Button(action: action) {
                     Text(actionTitle)
-                        .font(.system(size: 16, weight: .semibold))
+                        .font(.headline)
                 }
                 .buttonStyle(LiquidButton())
                 .padding(.horizontal, AppSpacing.large)
                 .frame(height: 48)
+                .accessibilityLabel(actionTitle)
+                .accessibilityHint("빈 상태를 해소하는 동작을 실행합니다")
+                .accessibilityAddTraits(.isButton)
             }
             
             Spacer()
@@ -93,7 +98,7 @@ struct AppleLoadingState: View {
             
             if let subtitle = subtitle {
                 Text(subtitle)
-                    .font(.system(size: 15, weight: .regular))
+                    .font(AppFonts.subheadline)
                     .foregroundStyle(.secondary)
                     .multilineTextAlignment(.center)
             }
@@ -116,7 +121,7 @@ private struct SkeletonBlock: View {
     
     var body: some View {
         RoundedRectangle(cornerRadius: AppRadius.medium)
-            .fill(Color.gray.opacity(0.2))
+            .fill(AppColors.separator.opacity(0.35))
             .shimmer(isActive: isShimmering)
             .onAppear {
                 withAnimation(.linear(duration: 2.0).repeatForever(autoreverses: false)) {

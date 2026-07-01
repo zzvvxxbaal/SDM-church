@@ -101,7 +101,7 @@ public struct NavigationExample_CustomBack: View {
                     coordinator.pop()
                 }
             }) {
-                HStack(spacing: 4) {
+                HStack(spacing: AppSpacing.xSmall) {
                     Image(systemName: "chevron.left")
                     Text("Back")
                 }
@@ -291,11 +291,11 @@ public struct CompleteFeatureExample: View {
     @State private var appearanceManager = NavigationBarAppearanceManager()
     
     public var body: some View {
-        VStack(spacing: 0) {
+        VStack(spacing: AppSpacing.none) {
             // Navigation Bar
             HStack {
                 Button(action: { coordinator.pop() }) {
-                    HStack(spacing: 4) {
+                    HStack(spacing: AppSpacing.xSmall) {
                         Image(systemName: "chevron.left")
                         Text("Back")
                     }
@@ -303,8 +303,8 @@ public struct CompleteFeatureExample: View {
                 }
                 Spacer()
             }
-            .padding(.horizontal, 16)
-            .padding(.vertical, 12)
+            .padding(.horizontal, AppSpacing.medium)
+            .padding(.vertical, AppSpacing.compact)
             
             // Title with Large Title sync
             LargeTitleView(
@@ -312,12 +312,12 @@ public struct CompleteFeatureExample: View {
                 subtitle: "Subtitle",
                 appearanceManager: appearanceManager
             )
-            .padding(.horizontal, 16)
-            .padding(.vertical, 8)
+            .padding(.horizontal, AppSpacing.medium)
+            .padding(.vertical, AppSpacing.small)
             
             // Content
             ScrollView {
-                VStack(spacing: 16) {
+                VStack(spacing: AppSpacing.medium) {
                     ScrollOffsetTracker { offset in
                         appearanceManager.updateScrollOffset(offset)
                     }
@@ -328,7 +328,7 @@ public struct CompleteFeatureExample: View {
                         coordinator.navigate(to: .prayer)
                     }
                 }
-                .padding(.horizontal, 16)
+                .padding(.horizontal, AppSpacing.medium)
             }
         }
         .navigationBarBackButtonHidden()

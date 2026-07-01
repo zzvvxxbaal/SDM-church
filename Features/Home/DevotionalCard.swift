@@ -6,7 +6,7 @@ struct DevotionalCard: View {
 
         LiquidCard {
 
-            VStack(alignment: .leading, spacing: 12) {
+            VStack(alignment: .leading, spacing: AppSpacing.compact) {
 
                 Text("QT")
 

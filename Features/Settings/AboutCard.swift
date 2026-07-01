@@ -6,7 +6,7 @@ struct AboutCard: View {
 
         LiquidCard {
 
-            VStack(alignment: .leading, spacing: 12) {
+            VStack(alignment: .leading, spacing: AppSpacing.compact) {
 
                 Text("서대문교회 청년부")
 

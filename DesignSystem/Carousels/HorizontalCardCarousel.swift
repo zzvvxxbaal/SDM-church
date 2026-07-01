@@ -147,7 +147,7 @@ struct CarouselWithIndicators<Item: Identifiable, Content: View>: View {
                 HStack(spacing: AppSpacing.xSmall) {
                     ForEach(0..<items.count, id: \.self) { index in
                         Capsule()
-                            .fill(index == currentIndex ? AppColors.tint : Color.gray.opacity(0.3))
+                            .fill(index == currentIndex ? AppColors.tint : AppColors.separator.opacity(0.5))
                             .frame(width: index == currentIndex ? 24 : 8, height: 4)
                             .animation(.spring(response: 0.3, dampingFraction: 0.7), value: currentIndex)
                             .matchedGeometryEffect(id: "indicator-\(index)", in: namespace)

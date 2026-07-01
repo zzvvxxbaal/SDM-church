@@ -8,7 +8,7 @@ struct UpcomingEventCard: View {
 
             HStack {
 
-                VStack(alignment: .leading, spacing: 10) {
+                VStack(alignment: .leading, spacing: AppSpacing.smPlus) {
 
                     Text("다가오는 일정")
 
@@ -28,7 +28,7 @@ struct UpcomingEventCard: View {
 
                 Image(systemName: "calendar.badge.clock")
 
-                    .font(.system(size: 38))
+                    .font(AppFonts.hero)
 
                     .foregroundStyle(AppColors.tint)
 

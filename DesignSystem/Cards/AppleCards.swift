@@ -66,22 +66,22 @@ struct AppleFeaturedCard<Content: View>: View {
             if let icon = icon {
                 HStack(spacing: AppSpacing.small) {
                     Image(systemName: icon)
-                        .font(.system(size: 18, weight: .semibold))
+                        .font(.headline)
                         .foregroundStyle(AppColors.tint)
                     
                     if let title = title {
                         Text(title)
-                            .font(.system(size: 16, weight: .semibold))
+                            .font(.headline)
                     }
                 }
             } else if let title = title {
                 Text(title)
-                    .font(.system(size: 16, weight: .semibold))
+                    .font(.headline)
             }
             
             if let subtitle = subtitle {
                 Text(subtitle)
-                    .font(.system(size: 13, weight: .regular))
+                    .font(AppFonts.caption1)
                     .foregroundStyle(.secondary)
             }
             
@@ -125,17 +125,17 @@ struct AppleExpandableCard<Content: View>: View {
             HStack(spacing: AppSpacing.small) {
                 if let icon = icon {
                     Image(systemName: icon)
-                        .font(.system(size: 18, weight: .semibold))
+                        .font(.headline)
                         .foregroundStyle(AppColors.tint)
                 }
                 
-                VStack(alignment: .leading, spacing: 2) {
+                VStack(alignment: .leading, spacing: AppSpacing.xxs) {
                     Text(title)
-                        .font(.system(size: 16, weight: .semibold))
+                        .font(.headline)
                     
                     if let subtitle = subtitle {
                         Text(subtitle)
-                            .font(.system(size: 13, weight: .regular))
+                            .font(AppFonts.caption1)
                             .foregroundStyle(.secondary)
                     }
                 }
@@ -143,7 +143,7 @@ struct AppleExpandableCard<Content: View>: View {
                 Spacer()
                 
                 Image(systemName: "chevron.down")
-                    .font(.system(size: 14, weight: .semibold))
+                    .font(.subheadline.weight(.semibold))
                     .foregroundStyle(.secondary)
                     .rotationEffect(.degrees(isExpanded ? 180 : 0))
                     .animation(.spring(response: 0.3, dampingFraction: 0.7), value: isExpanded)

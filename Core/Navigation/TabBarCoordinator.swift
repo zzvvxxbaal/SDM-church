@@ -69,7 +69,7 @@ public struct TabBarViewModifier: ViewModifier {
         ZStack(alignment: .bottom) {
             content
 
-            HStack(spacing: 0) {
+            HStack(spacing: AppSpacing.none) {
                 ForEach(0..<5, id: \.self) { index in
                     Button {
                         withAnimation(.easeInOut(duration: 0.2)) {

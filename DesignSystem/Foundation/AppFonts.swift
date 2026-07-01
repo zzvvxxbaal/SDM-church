@@ -1,17 +1,18 @@
 import SwiftUI
 
 enum AppFonts {
-    static let hero = Font.system(size: 36, weight: .bold, design: .default)
-    static let largeTitle = Font.system(size: 34, weight: .bold, design: .default)
-    static let title = Font.system(size: 28, weight: .bold, design: .default)
-    static let title1 = Font.system(size: 28, weight: .bold, design: .default)
-    static let title2 = Font.system(size: 22, weight: .bold, design: .default)
-    static let title3 = Font.system(size: 20, weight: .semibold, design: .default)
+    static let hero: Font = .largeTitle.weight(.bold)
+    static let largeTitle: Font = .largeTitle.weight(.bold)
+    static let title: Font = .title.weight(.bold)
+    static let title1: Font = .title.weight(.bold)
+    static let title2: Font = .title2.weight(.bold)
+    static let title3: Font = .title3.weight(.semibold)
 
-    static let headline = Font.system(size: 17, weight: .semibold, design: .default)
-    static let body = Font.system(size: 17, weight: .regular, design: .default)
-    static let callout = Font.system(size: 16, weight: .regular, design: .default)
-    static let subheadline = Font.system(size: 15, weight: .regular, design: .default)
-    static let caption1 = Font.system(size: 13, weight: .regular, design: .default)
-    static let caption2 = Font.system(size: 12, weight: .regular, design: .default)
+    static let headline: Font = .headline
+    static let body: Font = .body
+    static let callout: Font = .callout
+    static let subheadline: Font = .subheadline
+    static let footnote: Font = .footnote
+    static let caption1: Font = .caption
+    static let caption2: Font = .caption2
 }

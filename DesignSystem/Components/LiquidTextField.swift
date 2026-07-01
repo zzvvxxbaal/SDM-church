@@ -11,17 +11,19 @@ struct LiquidTextField: View {
                 .font(.title3)
                 .foregroundStyle(AppColors.textSecondary)
                 .frame(width: AppSpacing.controlInset)
+                .accessibilityHidden(true)
 
             TextField(title, text: $text)
                 .font(.body)
                 .textInputAutocapitalization(.never)
                 .autocorrectionDisabled()
                 .accessibilityLabel(title)
-                .accessibilityHint("Enter your \(title)")
+                .accessibilityHint("\(title) 값을 입력합니다")
         }
         .padding(.horizontal, AppSpacing.controlInset)
         .frame(height: 60)
         .liquidGlass(.regular, cornerRadius: AppRadius.button)
+        .accessibilityElement(children: .contain)
     }
 }
 

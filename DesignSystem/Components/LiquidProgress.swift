@@ -10,7 +10,7 @@ struct LiquidProgress: View {
 
             RoundedRectangle(
 
-                cornerRadius: 20
+                cornerRadius: AppRadius.xl
 
             )
 
@@ -20,7 +20,7 @@ struct LiquidProgress: View {
 
                 RoundedRectangle(
 
-                    cornerRadius: 20
+                    cornerRadius: AppRadius.xl
 
                 )
 

@@ -18,7 +18,7 @@ struct ParallaxScrollView<Content: View>: View {
     
     var body: some View {
         ScrollView {
-            VStack(spacing: 0) {
+            VStack(spacing: AppSpacing.none) {
                 content
             }
         }

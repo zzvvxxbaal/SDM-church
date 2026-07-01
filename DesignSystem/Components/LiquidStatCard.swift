@@ -12,7 +12,7 @@ struct LiquidStatCard: View {
 
         LiquidCard {
 
-            VStack(alignment: .leading, spacing: 14) {
+            VStack(alignment: .leading, spacing: AppSpacing.mdPlus) {
 
                 Image(systemName: icon)
 
@@ -22,7 +22,7 @@ struct LiquidStatCard: View {
 
                 Text(value)
 
-                    .font(.system(size: 28, weight: .bold))
+                    .font(AppFonts.title)
 
                 Text(title)
 

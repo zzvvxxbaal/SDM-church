@@ -11,6 +11,7 @@ struct LiquidSecureField: View {
                 .font(.title3)
                 .foregroundStyle(AppColors.textSecondary)
                 .frame(width: AppSpacing.controlInset)
+                .accessibilityHidden(true)
 
             Group {
                 if isSecure {
@@ -23,7 +24,7 @@ struct LiquidSecureField: View {
             }
             .font(.body)
             .accessibilityLabel(title)
-            .accessibilityHint("Enter your \(title)")
+            .accessibilityHint("\(title) 값을 입력합니다")
 
             Button {
                 withAnimation(.snappy) {
@@ -32,14 +33,17 @@ struct LiquidSecureField: View {
             } label: {
                 Image(systemName: isSecure ? "eye.slash" : "eye")
                     .foregroundStyle(AppColors.textSecondary)
+                    .accessibilityHidden(true)
             }
             .buttonStyle(.plain)
-            .accessibilityLabel(isSecure ? "Show password" : "Hide password")
-            .accessibilityHint("Toggles password visibility")
+            .accessibilityLabel(isSecure ? "비밀번호 보기" : "비밀번호 숨기기")
+            .accessibilityHint("비밀번호 표시 상태를 전환합니다")
+            .accessibilityAddTraits(.isButton)
         }
         .padding(.horizontal, AppSpacing.controlInset)
         .frame(height: 60)
         .liquidGlass(.regular, cornerRadius: AppRadius.button)
+        .accessibilityElement(children: .contain)
     }
 }
 

@@ -10,7 +10,7 @@ struct FeaturedEventSection: View {
     let maxAttendees: Int
     let isRegistered: Bool
     let onRegister: (() -> Void)?
-    
+
     init(
         title: String = "청년 수련회",
         date: String = "2026년 7월 15일",
@@ -32,91 +32,97 @@ struct FeaturedEventSection: View {
         self.isRegistered = isRegistered
         self.onRegister = onRegister
     }
-    
+
     var occupancyPercentage: Double {
         Double(rsvpCount) / Double(maxAttendees)
     }
-    
+
     var body: some View {
-        AppleSection(
-            title: "특별 행사",
-            icon: "calendar.badge.exclamationmark",
-            size: .large
-        ) {
+        AppleSection(title: "특별 행사", icon: "calendar.badge.exclamationmark", size: .large) {
             AppleFeaturedCard(
                 title: title,
                 icon: "calendar.badge.exclamationmark",
-                backgroundColor: .orange.opacity(0.1)
+                backgroundColor: AppColors.warningSoft
             ) {
                 VStack(alignment: .leading, spacing: AppSpacing.medium) {
                     Text(description)
-                        .font(.system(size: 14, weight: .regular))
-                        .foregroundStyle(.secondary)
+                        .font(.subheadline)
+                        .foregroundStyle(AppColors.textSecondary)
                         .lineLimit(2)
-                    
+                        .minimumScaleFactor(0.85)
+
                     VStack(alignment: .leading, spacing: AppSpacing.small) {
-                        HStack(spacing: AppSpacing.xSmall) {
-                            Image(systemName: "calendar")
-                                .font(.system(size: 12, weight: .semibold))
-                            Text(date)
-                                .font(.system(size: 12, weight: .semibold))
-                        }
-                        
-                        HStack(spacing: AppSpacing.xSmall) {
-                            Image(systemName: "clock")
-                                .font(.system(size: 12, weight: .semibold))
-                            Text(time)
-                                .font(.system(size: 12, weight: .semibold))
-                        }
-                        
-                        HStack(spacing: AppSpacing.xSmall) {
-                            Image(systemName: "location")
-                                .font(.system(size: 12, weight: .semibold))
-                            Text(location)
-                                .font(.system(size: 12, weight: .semibold))
-                        }
+                        detailRow(icon: "calendar", text: date)
+                        detailRow(icon: "clock", text: time)
+                        detailRow(icon: "location", text: location)
                     }
-                    .foregroundStyle(.secondary)
-                    
+                    .foregroundStyle(AppColors.textSecondary)
+
                     VStack(alignment: .leading, spacing: AppSpacing.small) {
-                        HStack(spacing: 0) {
+                        HStack(spacing: AppSpacing.none) {
                             Text("참석 현황")
-                                .font(.system(size: 12, weight: .semibold))
-                            
+                                .font(.caption.weight(.semibold))
+
                             Spacer()
-                            
+
                             Text("\(rsvpCount) / \(maxAttendees)명")
-                                .font(.system(size: 12, weight: .semibold))
-                                .foregroundStyle(.secondary)
+                                .font(.caption.weight(.semibold))
+                                .foregroundStyle(AppColors.textSecondary)
+                                .lineLimit(1)
+                                .minimumScaleFactor(0.8)
                         }
-                        
+
                         LiquidProgress(value: occupancyPercentage)
-                            .frame(height: 4)
+                            .frame(height: AppSpacing.xSmall)
+                            .accessibilityValue("\(rsvpCount)명 참석, 최대 \(maxAttendees)명")
                     }
-                    
+                    .accessibilityElement(children: .combine)
+
                     if !isRegistered {
                         Button(action: { onRegister?() }) {
                             Text("참석하기")
-                                .font(.system(size: 14, weight: .semibold))
+                                .font(.subheadline.weight(.semibold))
                         }
                         .buttonStyle(LiquidButton())
                         .frame(height: 40)
+                        .accessibilityLabel("참석하기")
+                        .accessibilityHint("행사 참석을 등록합니다")
+                        .accessibilityAddTraits(.isButton)
                     } else {
                         HStack(spacing: AppSpacing.small) {
                             Image(systemName: "checkmark.circle.fill")
-                                .font(.system(size: 14, weight: .semibold))
-                                .foregroundStyle(.green)
+                                .font(.subheadline.weight(.semibold))
+                                .foregroundStyle(AppColors.success)
+                                .accessibilityHidden(true)
                             Text("참석 확정")
-                                .font(.system(size: 13, weight: .semibold))
+                                .font(.caption.weight(.semibold))
+                                .lineLimit(1)
+                                .minimumScaleFactor(0.8)
                         }
                         .frame(maxWidth: .infinity)
                         .frame(height: 40)
-                        .background(Color.green.opacity(0.1))
+                        .background(AppColors.successSoft)
                         .cornerRadius(AppRadius.medium)
+                        .accessibilityElement(children: .combine)
+                        .accessibilityLabel("참석 상태")
+                        .accessibilityValue("참석 확정")
                     }
                 }
             }
         }
+    }
+
+    private func detailRow(icon: String, text: String) -> some View {
+        HStack(spacing: AppSpacing.xSmall) {
+            Image(systemName: icon)
+                .font(.caption.weight(.semibold))
+                .accessibilityHidden(true)
+            Text(text)
+                .font(.caption.weight(.semibold))
+                .lineLimit(1)
+                .minimumScaleFactor(0.8)
+        }
+        .accessibilityElement(children: .combine)
     }
 }
 

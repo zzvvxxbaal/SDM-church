@@ -148,10 +148,10 @@ struct AppleComponentsDocumentation: View {
         ScrollView {
             VStack(alignment: .leading, spacing: AppSpacing.large) {
                 Text("Apple Home Experience Components")
-                    .font(.system(size: 28, weight: .bold))
+                    .font(AppFonts.title)
                 
                 Text("Complete guide to all new Apple-style UI components for the SDM Church app")
-                    .font(.system(size: 15, weight: .regular))
+                    .font(AppFonts.subheadline)
                     .foregroundStyle(.secondary)
                 
                 // Foundation
@@ -214,17 +214,19 @@ private struct SectionDocumentation: View {
     var body: some View {
         VStack(alignment: .leading, spacing: AppSpacing.medium) {
             Text(title)
-                .font(.system(size: 18, weight: .bold))
+                .font(.headline.weight(.bold))
+                .lineLimit(1)
+                .minimumScaleFactor(0.8)
             
             VStack(alignment: .leading, spacing: AppSpacing.small) {
                 ForEach(items, id: \.self) { item in
                     HStack(spacing: AppSpacing.small) {
                         Image(systemName: "checkmark.circle.fill")
-                            .font(.system(size: 14, weight: .semibold))
+                            .font(.subheadline.weight(.semibold))
                             .foregroundStyle(AppColors.tint)
                         
                         Text(item)
-                            .font(.system(size: 14, weight: .regular))
+                            .font(.subheadline)
                     }
                 }
             }

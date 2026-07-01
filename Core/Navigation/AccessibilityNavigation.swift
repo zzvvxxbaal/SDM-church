@@ -51,10 +51,10 @@ public struct AccessibleNavigationBar: View {
     let onBack: () -> Void
     
     public var body: some View {
-        HStack(spacing: 12) {
+        HStack(spacing: AppSpacing.compact) {
             if showBackButton {
                 Button(action: onBack) {
-                    HStack(spacing: 4) {
+                    HStack(spacing: AppSpacing.xSmall) {
                         Image(systemName: "chevron.left")
                         Text("Back")
                     }
@@ -64,7 +64,7 @@ public struct AccessibleNavigationBar: View {
                 .accessibilityHint("Returns to the previous screen")
             }
             
-            VStack(alignment: .leading, spacing: 2) {
+            VStack(alignment: .leading, spacing: AppSpacing.xxs) {
                 Text(title)
                     .font(.headline)
                     .accessibilityAddTraits(.isHeader)

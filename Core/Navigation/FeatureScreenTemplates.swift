@@ -11,7 +11,7 @@ public struct HomeFeatureView: View {
             MeshGradientBackground()
             
             ScrollView {
-                VStack(spacing: 24) {
+                VStack(spacing: AppSpacing.large) {
                     ScrollOffsetTracker { offset in
                         appearanceManager.updateScrollOffset(offset)
                     }
@@ -38,7 +38,7 @@ public struct HomeFeatureView: View {
                     MinistryCard()
                     OfferingCard()
                 }
-                .padding(.horizontal, 16)
+                .padding(.horizontal, AppSpacing.medium)
             }
             .coordinateSpace(name: "scroll")
         }
@@ -61,8 +61,8 @@ public struct PrayerFeatureView: View {
     @State private var appearanceManager = NavigationBarAppearanceManager()
     
     public var body: some View {
-        VStack(spacing: 0) {
-            VStack(alignment: .leading, spacing: 8) {
+        VStack(spacing: AppSpacing.none) {
+            VStack(alignment: .leading, spacing: AppSpacing.small) {
                 HStack {
                     Button(action: { coordinator.pop() }) {
                         HStack(spacing: AppSpacing.xSmall) {
@@ -75,7 +75,7 @@ public struct PrayerFeatureView: View {
                     .accessibilityHint("Returns to the previous screen")
                     Spacer()
                 }
-                .padding(.bottom, 8)
+                .padding(.bottom, AppSpacing.small)
                 
                 Text("Prayer")
                     .font(.largeTitle)
@@ -85,15 +85,15 @@ public struct PrayerFeatureView: View {
                     .font(.caption)
                     .foregroundStyle(AppColors.textSecondary)
             }
-            .padding(.horizontal, 16)
-            .padding(.vertical, 12)
+            .padding(.horizontal, AppSpacing.medium)
+            .padding(.vertical, AppSpacing.compact)
             
             ScrollView {
-                VStack(spacing: 16) {
+                VStack(spacing: AppSpacing.medium) {
                     // Prayer content here
                 }
-                .padding(.horizontal, 16)
-                .padding(.vertical, 12)
+                .padding(.horizontal, AppSpacing.medium)
+                .padding(.vertical, AppSpacing.compact)
             }
         }
         .navigationBarBackButtonHidden()
@@ -114,8 +114,8 @@ public struct WorshipFeatureView: View {
     @Environment(NavigationCoordinator.self) var coordinator
     
     public var body: some View {
-        VStack(spacing: 0) {
-            VStack(alignment: .leading, spacing: 8) {
+        VStack(spacing: AppSpacing.none) {
+            VStack(alignment: .leading, spacing: AppSpacing.small) {
                 HStack {
                     Button(action: { coordinator.pop() }) {
                         HStack(spacing: AppSpacing.xSmall) {
@@ -128,20 +128,20 @@ public struct WorshipFeatureView: View {
                     .accessibilityHint("Returns to the previous screen")
                     Spacer()
                 }
-                .padding(.bottom, 8)
+                .padding(.bottom, AppSpacing.small)
                 
                 Text("Worship")
                     .font(.largeTitle)
                     .fontWeight(.bold)
             }
-            .padding(.horizontal, 16)
-            .padding(.vertical, 12)
+            .padding(.horizontal, AppSpacing.medium)
+            .padding(.vertical, AppSpacing.compact)
             
             ScrollView {
-                VStack(spacing: 16) {
+                VStack(spacing: AppSpacing.medium) {
                     // Worship content here
                 }
-                .padding(.horizontal, 16)
+                .padding(.horizontal, AppSpacing.medium)
             }
         }
         .navigationBarBackButtonHidden()
@@ -157,8 +157,8 @@ public struct CommunityFeatureView: View {
     @Environment(NavigationCoordinator.self) var coordinator
     
     public var body: some View {
-        VStack(spacing: 0) {
-            VStack(alignment: .leading, spacing: 8) {
+        VStack(spacing: AppSpacing.none) {
+            VStack(alignment: .leading, spacing: AppSpacing.small) {
                 HStack {
                     Button(action: { coordinator.pop() }) {
                         HStack(spacing: AppSpacing.xSmall) {
@@ -171,20 +171,20 @@ public struct CommunityFeatureView: View {
                     .accessibilityHint("Returns to the previous screen")
                     Spacer()
                 }
-                .padding(.bottom, 8)
+                .padding(.bottom, AppSpacing.small)
                 
                 Text("Community")
                     .font(.largeTitle)
                     .fontWeight(.bold)
             }
-            .padding(.horizontal, 16)
-            .padding(.vertical, 12)
+            .padding(.horizontal, AppSpacing.medium)
+            .padding(.vertical, AppSpacing.compact)
             
             ScrollView {
-                VStack(spacing: 16) {
+                VStack(spacing: AppSpacing.medium) {
                     // Community content here
                 }
-                .padding(.horizontal, 16)
+                .padding(.horizontal, AppSpacing.medium)
             }
         }
         .navigationBarBackButtonHidden()
@@ -200,8 +200,8 @@ public struct SettingsFeatureView: View {
     @Environment(NavigationCoordinator.self) var coordinator
     
     public var body: some View {
-        VStack(spacing: 0) {
-            VStack(alignment: .leading, spacing: 8) {
+        VStack(spacing: AppSpacing.none) {
+            VStack(alignment: .leading, spacing: AppSpacing.small) {
                 HStack {
                     Button(action: { coordinator.pop() }) {
                         HStack(spacing: AppSpacing.xSmall) {
@@ -214,20 +214,20 @@ public struct SettingsFeatureView: View {
                     .accessibilityHint("Returns to the previous screen")
                     Spacer()
                 }
-                .padding(.bottom, 8)
+                .padding(.bottom, AppSpacing.small)
                 
                 Text("Settings")
                     .font(.largeTitle)
                     .fontWeight(.bold)
             }
-            .padding(.horizontal, 16)
-            .padding(.vertical, 12)
+            .padding(.horizontal, AppSpacing.medium)
+            .padding(.vertical, AppSpacing.compact)
             
             ScrollView {
-                VStack(spacing: 16) {
+                VStack(spacing: AppSpacing.medium) {
                     // Settings content here
                 }
-                .padding(.horizontal, 16)
+                .padding(.horizontal, AppSpacing.medium)
             }
         }
         .navigationBarBackButtonHidden()
@@ -243,8 +243,8 @@ public struct NoticeFeatureView: View {
     @Environment(NavigationCoordinator.self) var coordinator
     
     public var body: some View {
-        VStack(spacing: 0) {
-            VStack(alignment: .leading, spacing: 8) {
+        VStack(spacing: AppSpacing.none) {
+            VStack(alignment: .leading, spacing: AppSpacing.small) {
                 HStack {
                     Button(action: { coordinator.pop() }) {
                         HStack(spacing: AppSpacing.xSmall) {
@@ -257,20 +257,20 @@ public struct NoticeFeatureView: View {
                     .accessibilityHint("Returns to the previous screen")
                     Spacer()
                 }
-                .padding(.bottom, 8)
+                .padding(.bottom, AppSpacing.small)
                 
                 Text("Notice")
                     .font(.largeTitle)
                     .fontWeight(.bold)
             }
-            .padding(.horizontal, 16)
-            .padding(.vertical, 12)
+            .padding(.horizontal, AppSpacing.medium)
+            .padding(.vertical, AppSpacing.compact)
             
             ScrollView {
-                VStack(spacing: 16) {
+                VStack(spacing: AppSpacing.medium) {
                     // Notice content here
                 }
-                .padding(.horizontal, 16)
+                .padding(.horizontal, AppSpacing.medium)
             }
         }
         .navigationBarBackButtonHidden()
@@ -286,8 +286,8 @@ public struct CalendarFeatureView: View {
     @Environment(NavigationCoordinator.self) var coordinator
     
     public var body: some View {
-        VStack(spacing: 0) {
-            VStack(alignment: .leading, spacing: 8) {
+        VStack(spacing: AppSpacing.none) {
+            VStack(alignment: .leading, spacing: AppSpacing.small) {
                 HStack {
                     Button(action: { coordinator.pop() }) {
                         HStack(spacing: AppSpacing.xSmall) {
@@ -300,20 +300,20 @@ public struct CalendarFeatureView: View {
                     .accessibilityHint("Returns to the previous screen")
                     Spacer()
                 }
-                .padding(.bottom, 8)
+                .padding(.bottom, AppSpacing.small)
                 
                 Text("Calendar")
                     .font(.largeTitle)
                     .fontWeight(.bold)
             }
-            .padding(.horizontal, 16)
-            .padding(.vertical, 12)
+            .padding(.horizontal, AppSpacing.medium)
+            .padding(.vertical, AppSpacing.compact)
             
             ScrollView {
-                VStack(spacing: 16) {
+                VStack(spacing: AppSpacing.medium) {
                     // Calendar content here
                 }
-                .padding(.horizontal, 16)
+                .padding(.horizontal, AppSpacing.medium)
             }
         }
         .navigationBarBackButtonHidden()
@@ -329,8 +329,8 @@ public struct ProfileFeatureView: View {
     @Environment(NavigationCoordinator.self) var coordinator
     
     public var body: some View {
-        VStack(spacing: 0) {
-            VStack(alignment: .leading, spacing: 8) {
+        VStack(spacing: AppSpacing.none) {
+            VStack(alignment: .leading, spacing: AppSpacing.small) {
                 HStack {
                     Button(action: { coordinator.pop() }) {
                         HStack(spacing: AppSpacing.xSmall) {
@@ -343,20 +343,20 @@ public struct ProfileFeatureView: View {
                     .accessibilityHint("Returns to the previous screen")
                     Spacer()
                 }
-                .padding(.bottom, 8)
+                .padding(.bottom, AppSpacing.small)
                 
                 Text("Profile")
                     .font(.largeTitle)
                     .fontWeight(.bold)
             }
-            .padding(.horizontal, 16)
-            .padding(.vertical, 12)
+            .padding(.horizontal, AppSpacing.medium)
+            .padding(.vertical, AppSpacing.compact)
             
             ScrollView {
-                VStack(spacing: 16) {
+                VStack(spacing: AppSpacing.medium) {
                     // Profile content here
                 }
-                .padding(.horizontal, 16)
+                .padding(.horizontal, AppSpacing.medium)
             }
         }
         .navigationBarBackButtonHidden()

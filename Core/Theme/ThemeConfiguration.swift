@@ -10,21 +10,21 @@ protocol ThemeConfiguration {
 }
 
 struct LightTheme: ThemeConfiguration {
-    var primaryColor: Color { Color(red: 0.2, green: 0.4, blue: 0.8) }
-    var secondaryColor: Color { Color(red: 0.1, green: 0.1, blue: 0.1) }
-    var backgroundColor: Color { Color.white }
-    var surfaceColor: Color { Color(red: 0.97, green: 0.97, blue: 0.98) }
-    var textColor: Color { Color.black }
-    var accentColor: Color { Color(red: 0.2, green: 0.4, blue: 0.8) }
+    var primaryColor: Color { AppColors.tint }
+    var secondaryColor: Color { AppColors.textSecondary }
+    var backgroundColor: Color { AppColors.background }
+    var surfaceColor: Color { AppColors.surfaceSecondary }
+    var textColor: Color { AppColors.text }
+    var accentColor: Color { AppColors.accent }
 }
 
 struct DarkTheme: ThemeConfiguration {
-    var primaryColor: Color { Color(red: 0.4, green: 0.6, blue: 1.0) }
-    var secondaryColor: Color { Color.white }
-    var backgroundColor: Color { Color.black }
-    var surfaceColor: Color { Color(red: 0.17, green: 0.17, blue: 0.18) }
-    var textColor: Color { Color.white }
-    var accentColor: Color { Color(red: 0.4, green: 0.6, blue: 1.0) }
+    var primaryColor: Color { AppColors.tint }
+    var secondaryColor: Color { AppColors.textSecondary }
+    var backgroundColor: Color { AppColors.background }
+    var surfaceColor: Color { AppColors.surfaceSecondary }
+    var textColor: Color { AppColors.text }
+    var accentColor: Color { AppColors.accent }
 }
 
 enum ThemeManager {

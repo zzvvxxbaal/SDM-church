@@ -238,7 +238,7 @@ public struct GlassMetalIntegration {
 /// VStack {
 ///     content
 /// }
-/// .liquidGlassEnvironmentAware(.card, cornerRadius: 20)
+/// .liquidGlassEnvironmentAware(.card, cornerRadius: AppRadius.xl)
 /// ```
 
 /// Example: Variant-Based Glass Panel
@@ -282,7 +282,7 @@ public struct GlassMetalIntegration {
 /// 
 /// ### Basic Usage (Backward Compatible)
 /// ```swift
-/// view.liquidGlass(.card, cornerRadius: 20)
+/// view.liquidGlass(.card, cornerRadius: AppRadius.xl)
 /// ```
 ///
 /// ### Optimized Rendering

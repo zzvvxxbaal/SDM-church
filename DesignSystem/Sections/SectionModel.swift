@@ -8,7 +8,7 @@ struct SectionModel: Identifiable {
     let backgroundColor: Color
     let showSeeAll: Bool
     let seeAllAction: (() -> Void)?
-    
+
     init(
         id: String = UUID().uuidString,
         title: String,
@@ -32,37 +32,48 @@ enum SectionHeaderSize {
     case large
     case medium
     case small
-    
+
     var titleFont: Font {
         switch self {
         case .large:
-            return .system(size: 28, weight: .bold)
+            return AppFonts.title
         case .medium:
-            return .system(size: 22, weight: .bold)
+            return AppFonts.title2
         case .small:
-            return .system(size: 17, weight: .semibold)
+            return AppFonts.headline
         }
     }
-    
+
     var subtitleFont: Font {
         switch self {
         case .large:
-            return .system(size: 17, weight: .regular)
+            return AppFonts.body
         case .medium:
-            return .system(size: 15, weight: .regular)
+            return AppFonts.subheadline
         case .small:
-            return .system(size: 13, weight: .regular)
+            return AppFonts.caption1
         }
     }
-    
+
     var spacing: CGFloat {
         switch self {
         case .large:
-            return 12
+            return AppSpacing.compact
         case .medium:
-            return 8
+            return AppSpacing.small
         case .small:
-            return 4
+            return AppSpacing.xSmall
+        }
+    }
+
+    var iconFont: Font {
+        switch self {
+        case .large:
+            return AppFonts.title2
+        case .medium:
+            return AppFonts.headline
+        case .small:
+            return AppFonts.subheadline.weight(.semibold)
         }
     }
 }

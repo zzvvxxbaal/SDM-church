@@ -10,7 +10,7 @@ struct NoticeCard: View {
 
             HStack(alignment: .top) {
 
-                VStack(alignment: .leading, spacing: 10) {
+                VStack(alignment: .leading, spacing: AppSpacing.smPlus) {
 
                     if notice.isPinned {
 

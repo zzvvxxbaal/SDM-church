@@ -8,13 +8,13 @@ struct LiquidDialog<Content: View>: View {
 
     var body: some View {
 
-        VStack(spacing:20) {
+        VStack(spacing: AppSpacing.inset) {
 
             content
 
         }
 
-        .padding(28)
+        .padding(AppSpacing.floating)
 
         .liquidGlass(.thick, cornerRadius: AppRadius.dialog)
 

@@ -27,7 +27,7 @@ public struct FeatureNavigationContainer<Content: View>: View {
             NavigationStack(path: $coordinator.navigationStack) {
                 ScrollView {
                     ScrollViewReader { proxy in
-                        VStack(alignment: .leading, spacing: 0) {
+                        VStack(alignment: .leading, spacing: AppSpacing.none) {
                             ScrollOffsetTracker { offset in
                                 appearanceManager.updateScrollOffset(offset)
                             }
@@ -37,11 +37,11 @@ public struct FeatureNavigationContainer<Content: View>: View {
                                 subtitle: subtitle ?? "",
                                 appearanceManager: appearanceManager
                             )
-                            .padding(.horizontal, 16)
-                            .padding(.vertical, 12)
+                            .padding(.horizontal, AppSpacing.medium)
+                            .padding(.vertical, AppSpacing.compact)
                             
                             content(coordinator)
-                                .padding(.horizontal, 16)
+                                .padding(.horizontal, AppSpacing.medium)
                         }
                     }
                 }
@@ -92,12 +92,12 @@ public struct FeatureScreenView<Content: View>: View {
     }
     
     public var body: some View {
-        VStack(spacing: 0) {
-            VStack(alignment: .leading, spacing: 8) {
+        VStack(spacing: AppSpacing.none) {
+            VStack(alignment: .leading, spacing: AppSpacing.small) {
                 if showBackButton {
                     HStack {
                         Button(action: { coordinator.pop() }) {
-                            HStack(spacing: 4) {
+                            HStack(spacing: AppSpacing.xSmall) {
                                 Image(systemName: "chevron.left")
                                 Text("Back")
                             }
@@ -105,7 +105,7 @@ public struct FeatureScreenView<Content: View>: View {
                         }
                         Spacer()
                     }
-                    .padding(.bottom, 8)
+                    .padding(.bottom, AppSpacing.small)
                 }
                 
                 Text(title)
@@ -118,13 +118,13 @@ public struct FeatureScreenView<Content: View>: View {
                         .foregroundStyle(AppColors.textSecondary)
                 }
             }
-            .padding(.horizontal, 16)
-            .padding(.vertical, 12)
+            .padding(.horizontal, AppSpacing.medium)
+            .padding(.vertical, AppSpacing.compact)
             
             ScrollView {
                 content()
-                    .padding(.horizontal, 16)
-                    .padding(.vertical, 12)
+                    .padding(.horizontal, AppSpacing.medium)
+                    .padding(.vertical, AppSpacing.compact)
             }
         }
         .navigationBarBackButtonHidden()

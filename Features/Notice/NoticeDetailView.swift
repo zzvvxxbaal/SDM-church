@@ -8,7 +8,7 @@ struct NoticeDetailView: View {
 
         ScrollView {
 
-            VStack(alignment: .leading, spacing: 24) {
+            VStack(alignment: .leading, spacing: AppSpacing.large) {
 
                 LiquidLargeTitle(
 
@@ -28,7 +28,7 @@ struct NoticeDetailView: View {
 
             }
 
-            .padding(24)
+            .padding(AppSpacing.large)
 
         }
 

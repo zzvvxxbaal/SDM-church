@@ -8,7 +8,7 @@ struct PrayerSummaryCard: View {
 
             HStack {
 
-                VStack(alignment: .leading, spacing: 10) {
+                VStack(alignment: .leading, spacing: AppSpacing.smPlus) {
 
                     Text("기도제목")
 
@@ -24,9 +24,9 @@ struct PrayerSummaryCard: View {
 
                 Image(systemName: "hands.sparkles.fill")
 
-                    .font(.system(size: 36))
+                    .font(AppFonts.hero)
 
-                    .foregroundStyle(.orange)
+                    .foregroundStyle(AppColors.warning)
 
             }
 

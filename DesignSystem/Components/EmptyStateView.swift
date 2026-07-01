@@ -10,11 +10,11 @@ struct EmptyStateView: View {
 
     var body: some View {
 
-        VStack(spacing: 20) {
+        VStack(spacing: AppSpacing.inset) {
 
             Image(systemName: image)
 
-                .font(.system(size: 60))
+                .font(AppFonts.hero)
 
             Text(title)
 
@@ -28,7 +28,7 @@ struct EmptyStateView: View {
 
         }
 
-        .padding(40)
+        .padding(AppSpacing.jumbo)
 
     }
 

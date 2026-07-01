@@ -12,7 +12,7 @@ struct MinistryData: Identifiable {
 struct MinistrySection: View {
     let ministries: [MinistryData]
     let onMinistryTap: ((MinistryData) -> Void)?
-    
+
     init(
         ministries: [MinistryData]? = nil,
         onMinistryTap: ((MinistryData) -> Void)? = nil
@@ -21,11 +21,11 @@ struct MinistrySection: View {
             MinistryData(id: "1", name: "찬양팀", leader: "정현석", icon: "music.note.list", color: .blue, memberCount: 12),
             MinistryData(id: "2", name: "수호팀", leader: "김철수", icon: "eye.fill", color: .purple, memberCount: 8),
             MinistryData(id: "3", name: "중보기도", leader: "이순신", icon: "hands.sparkles.fill", color: .pink, memberCount: 15),
-            MinistryData(id: "4", name: "교육팀", leader: "박민준", icon: "books.vertical.fill", color: .green, memberCount: 10),
+            MinistryData(id: "4", name: "교육팀", leader: "박민준", icon: "books.vertical.fill", color: .green, memberCount: 10)
         ]
         self.onMinistryTap = onMinistryTap
     }
-    
+
     var body: some View {
         AppleSection(
             title: "사역팀",
@@ -41,6 +41,10 @@ struct MinistrySection: View {
                 Button(action: { onMinistryTap?(ministry) }) {
                     MinistryCard(ministry: ministry)
                 }
+                .accessibilityLabel(ministry.name)
+                .accessibilityHint("사역팀 상세 정보를 엽니다")
+                .accessibilityValue("리더 \(ministry.leader), 인원 \(ministry.memberCount)명")
+                .accessibilityAddTraits(.isButton)
             }
         }
     }
@@ -48,43 +52,53 @@ struct MinistrySection: View {
 
 struct MinistryCard: View {
     let ministry: MinistryData
-    
+
     var body: some View {
         VStack(alignment: .leading, spacing: AppSpacing.medium) {
             HStack(spacing: AppSpacing.small) {
                 Image(systemName: ministry.icon)
-                    .font(.system(size: 20, weight: .semibold))
-                    .foregroundStyle(.white)
+                    .font(AppFonts.title3)
+                    .foregroundStyle(AppColors.textOnTint)
                     .frame(width: 40, height: 40)
                     .background(ministry.color)
                     .clipShape(Circle())
-                
-                VStack(alignment: .leading, spacing: 2) {
+                    .accessibilityHidden(true)
+
+                VStack(alignment: .leading, spacing: AppSpacing.xxs) {
                     Text(ministry.name)
-                        .font(.system(size: 14, weight: .semibold))
-                    
+                        .font(.subheadline.weight(.semibold))
+                        .lineLimit(1)
+                        .minimumScaleFactor(0.8)
+
                     Text(ministry.leader)
-                        .font(.system(size: 12, weight: .regular))
-                        .foregroundStyle(.secondary)
+                        .font(AppFonts.caption1)
+                        .foregroundStyle(AppColors.textSecondary)
+                        .lineLimit(1)
+                        .minimumScaleFactor(0.8)
                 }
-                
+
                 Spacer()
             }
-            
+
             HStack(spacing: AppSpacing.xSmall) {
                 Image(systemName: "person.fill")
-                    .font(.system(size: 11, weight: .semibold))
+                    .font(.caption2.weight(.semibold))
+                    .accessibilityHidden(true)
+
                 Text("\(ministry.memberCount)명")
-                    .font(.system(size: 12, weight: .regular))
+                    .font(AppFonts.caption1)
+                    .lineLimit(1)
+                    .minimumScaleFactor(0.8)
             }
-            .foregroundStyle(.secondary)
-            
+            .foregroundStyle(AppColors.textSecondary)
+
             Spacer()
         }
         .frame(maxWidth: .infinity, alignment: .leading)
         .frame(height: 180)
         .padding(AppSpacing.medium)
         .liquidGlass(.card, cornerRadius: AppRadius.card)
+        .accessibilityElement(children: .combine)
     }
 }
 

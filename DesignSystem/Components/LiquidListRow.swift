@@ -20,7 +20,7 @@ struct LiquidListRow<Content: View>: View {
 
         }
 
-        .padding(20)
+        .padding(AppSpacing.inset)
 
         .liquidGlass(.card, cornerRadius: AppRadius.card)
 

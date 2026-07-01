@@ -44,7 +44,7 @@ public struct ModalPresentationStyle: ViewModifier {
             content
                 .frame(maxWidth: 300)
                 .background(AppColors.background)
-                .cornerRadius(12)
+                .cornerRadius(AppRadius.small)
                 .shadow(radius: 20)
         case .alert:
             content

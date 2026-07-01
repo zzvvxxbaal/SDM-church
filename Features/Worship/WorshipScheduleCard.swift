@@ -6,7 +6,7 @@ struct WorshipScheduleCard: View {
 
         LiquidCard {
 
-            VStack(alignment: .leading, spacing: 14) {
+            VStack(alignment: .leading, spacing: AppSpacing.mdPlus) {
 
                 Text("이번 주 예배")
 

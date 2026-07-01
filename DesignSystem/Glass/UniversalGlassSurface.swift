@@ -103,7 +103,7 @@ struct LightingLayer: View {
         let opacity = 0.32 * configuration.highlightIntensity * (colorScheme == .dark ? 0.7 : 1.0)
         
         ZStack {
-            RoundedRectangle(cornerRadius: 12, style: .continuous)
+            RoundedRectangle(cornerRadius: AppRadius.small, style: .continuous)
                 .stroke(
                     LinearGradient(
                         gradient: Gradient(colors: [

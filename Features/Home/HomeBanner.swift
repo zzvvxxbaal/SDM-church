@@ -6,7 +6,7 @@ struct HomeBanner: View {
 
         LiquidCard {
 
-            VStack(alignment: .leading, spacing: 14) {
+            VStack(alignment: .leading, spacing: AppSpacing.mdPlus) {
 
                 Text("Welcome")
 
@@ -16,7 +16,7 @@ struct HomeBanner: View {
 
                 Text("예배를 통해\n하나님을 만나보세요.")
 
-                    .font(.system(size: 30, weight: .bold))
+                    .font(AppFonts.title)
 
                 LiquidBadge(
 

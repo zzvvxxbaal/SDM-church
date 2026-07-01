@@ -25,7 +25,7 @@ struct DepthShadowLayer: View {
         let shadowOpacity = depthLevel * 0.08
         let shadowRadius = depthLevel * 4
         
-        RoundedRectangle(cornerRadius: 16, style: .continuous)
+        RoundedRectangle(cornerRadius: AppRadius.md, style: .continuous)
             .shadow(
                 color: Color.black.opacity(shadowOpacity),
                 radius: shadowRadius,

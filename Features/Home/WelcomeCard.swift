@@ -8,7 +8,7 @@ struct WelcomeCard: View {
 
             HStack {
 
-                VStack(alignment: .leading, spacing: 10) {
+                VStack(alignment: .leading, spacing: AppSpacing.smPlus) {
 
                     Text("오늘도 평안하세요")
 
@@ -26,9 +26,9 @@ struct WelcomeCard: View {
 
                 Image(systemName: "sun.max.fill")
 
-                    .font(.system(size: 42))
+                    .font(AppFonts.hero)
 
-                    .foregroundStyle(.yellow)
+                    .foregroundStyle(AppColors.warning)
 
             }
 

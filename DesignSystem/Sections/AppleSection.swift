@@ -7,7 +7,7 @@ struct AppleSectionHeader: View {
     let icon: String?
     let showSeeAll: Bool
     let seeAllAction: (() -> Void)?
-    
+
     init(
         title: String,
         subtitle: String? = nil,
@@ -23,7 +23,7 @@ struct AppleSectionHeader: View {
         self.showSeeAll = showSeeAll
         self.seeAllAction = seeAllAction
     }
-    
+
     var body: some View {
         VStack(alignment: .leading, spacing: size.spacing) {
             HStack(alignment: .top, spacing: AppSpacing.medium) {
@@ -31,38 +31,48 @@ struct AppleSectionHeader: View {
                     HStack(spacing: AppSpacing.small) {
                         if let icon = icon {
                             Image(systemName: icon)
-                                .font(.system(size: size == .large ? 24 : 18, weight: .semibold))
+                                .font(size.iconFont)
                                 .foregroundStyle(AppColors.tint)
+                                .accessibilityHidden(true)
                         }
+
                         Text(title)
                             .font(size.titleFont)
                             .lineLimit(1)
+                            .minimumScaleFactor(0.8)
+                            .accessibilityAddTraits(.isHeader)
                     }
-                    
+
                     if let subtitle = subtitle {
                         Text(subtitle)
                             .font(size.subtitleFont)
-                            .foregroundStyle(.secondary)
+                            .foregroundStyle(AppColors.textSecondary)
                             .lineLimit(2)
+                            .minimumScaleFactor(0.85)
                     }
                 }
-                
+
                 Spacer(minLength: AppSpacing.medium)
-                
+
                 if showSeeAll {
                     Button(action: { seeAllAction?() }) {
                         HStack(spacing: AppSpacing.xSmall) {
                             Text("모두보기")
-                                .font(.system(size: 13, weight: .semibold))
+                                .font(.caption.weight(.semibold))
                             Image(systemName: "chevron.right")
-                                .font(.system(size: 12, weight: .semibold))
+                                .font(.caption.weight(.semibold))
+                                .accessibilityHidden(true)
                         }
                         .foregroundStyle(AppColors.tint)
                     }
+                    .accessibilityLabel("모두보기")
+                    .accessibilityHint("이 섹션의 전체 내용을 엽니다")
+                    .accessibilityAddTraits(.isButton)
                 }
             }
         }
         .frame(maxWidth: .infinity, alignment: .leading)
+        .accessibilityElement(children: .combine)
     }
 }
 
@@ -70,7 +80,7 @@ struct AppleSection<Content: View>: View {
     let header: AppleSectionHeader?
     let content: Content
     let spacing: CGFloat
-    
+
     init(
         title: String? = nil,
         subtitle: String? = nil,
@@ -82,7 +92,7 @@ struct AppleSection<Content: View>: View {
         @ViewBuilder content: () -> Content
     ) {
         if let title = title {
-            self.header = AppleSectionHeader(
+            header = AppleSectionHeader(
                 title: title,
                 subtitle: subtitle,
                 size: size,
@@ -91,12 +101,12 @@ struct AppleSection<Content: View>: View {
                 seeAllAction: seeAllAction
             )
         } else {
-            self.header = nil
+            header = nil
         }
         self.content = content()
         self.spacing = spacing
     }
-    
+
     init(
         header: AppleSectionHeader?,
         spacing: CGFloat = AppSpacing.large,
@@ -106,10 +116,10 @@ struct AppleSection<Content: View>: View {
         self.content = content()
         self.spacing = spacing
     }
-    
+
     var body: some View {
         VStack(alignment: .leading, spacing: spacing) {
-            if let header = header {
+            if let header {
                 header
                     .padding(.horizontal, AppSpacing.large)
             }

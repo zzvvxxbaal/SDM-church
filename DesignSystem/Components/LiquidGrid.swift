@@ -20,7 +20,7 @@ struct LiquidGrid<Content: View>: View {
 
             columns: columns,
 
-            spacing: 18
+            spacing: AppSpacing.content
 
         ) {
 

@@ -6,7 +6,7 @@ struct RecentNoticeCard: View {
 
         LiquidCard {
 
-            VStack(alignment: .leading, spacing: 14) {
+            VStack(alignment: .leading, spacing: AppSpacing.mdPlus) {
 
                 HStack {
 

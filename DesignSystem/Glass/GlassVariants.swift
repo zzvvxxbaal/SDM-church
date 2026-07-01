@@ -19,7 +19,7 @@ struct GlassVariants {
         name: "Floating Glass",
         materialType: .floating,
         configuration: .quality,
-        cornerRadius: 28,
+        cornerRadius: AppRadius.floating,
         shadowConfiguration: GlassShadowConfig(
             radius: 24,
             opacity: 0.15,
@@ -31,7 +31,7 @@ struct GlassVariants {
         name: "Toolbar Glass",
         materialType: .toolbar,
         configuration: .standard,
-        cornerRadius: 16,
+        cornerRadius: AppRadius.md,
         shadowConfiguration: GlassShadowConfig(
             radius: 16,
             opacity: 0.08,
@@ -43,7 +43,7 @@ struct GlassVariants {
         name: "Navigation Glass",
         materialType: .navigation,
         configuration: .standard,
-        cornerRadius: 12,
+        cornerRadius: AppRadius.small,
         shadowConfiguration: GlassShadowConfig(
             radius: 20,
             opacity: 0.12,
@@ -55,7 +55,7 @@ struct GlassVariants {
         name: "Card Glass",
         materialType: .card,
         configuration: .quality,
-        cornerRadius: 20,
+        cornerRadius: AppRadius.xl,
         shadowConfiguration: GlassShadowConfig(
             radius: 20,
             opacity: 0.13,
@@ -67,7 +67,7 @@ struct GlassVariants {
         name: "Button Glass",
         materialType: .button,
         configuration: .standard,
-        cornerRadius: 12,
+        cornerRadius: AppRadius.small,
         shadowConfiguration: GlassShadowConfig(
             radius: 12,
             opacity: 0.07,
@@ -79,7 +79,7 @@ struct GlassVariants {
         name: "Capsule Glass",
         materialType: .capsule,
         configuration: .standard,
-        cornerRadius: 24,
+        cornerRadius: AppRadius.xxl,
         shadowConfiguration: GlassShadowConfig(
             radius: 8,
             opacity: 0.06,
@@ -91,7 +91,7 @@ struct GlassVariants {
         name: "Sidebar Glass",
         materialType: .thick,
         configuration: .quality,
-        cornerRadius: 0,
+        cornerRadius: AppRadius.none,
         shadowConfiguration: GlassShadowConfig(
             radius: 16,
             opacity: 0.1,
@@ -103,7 +103,7 @@ struct GlassVariants {
         name: "Search Glass",
         materialType: .thin,
         configuration: .standard,
-        cornerRadius: 10,
+        cornerRadius: AppRadius.xs,
         shadowConfiguration: GlassShadowConfig(
             radius: 8,
             opacity: 0.05,
@@ -115,7 +115,7 @@ struct GlassVariants {
         name: "Sheet Glass",
         materialType: .thick,
         configuration: .quality,
-        cornerRadius: 20,
+        cornerRadius: AppRadius.xl,
         shadowConfiguration: GlassShadowConfig(
             radius: 30,
             opacity: 0.2,
@@ -127,7 +127,7 @@ struct GlassVariants {
         name: "Dialog Glass",
         materialType: .thick,
         configuration: .ultraQuality,
-        cornerRadius: 24,
+        cornerRadius: AppRadius.xxl,
         shadowConfiguration: GlassShadowConfig(
             radius: 32,
             opacity: 0.25,
@@ -139,7 +139,7 @@ struct GlassVariants {
         name: "Ultra Thin Glass",
         materialType: .ultraThin,
         configuration: .standard,
-        cornerRadius: 16,
+        cornerRadius: AppRadius.md,
         shadowConfiguration: GlassShadowConfig(
             radius: 8,
             opacity: 0.04,
@@ -151,7 +151,7 @@ struct GlassVariants {
         name: "Default Glass",
         materialType: .regular,
         configuration: .standard,
-        cornerRadius: 16,
+        cornerRadius: AppRadius.md,
         shadowConfiguration: GlassShadowConfig(
             radius: 16,
             opacity: 0.1,

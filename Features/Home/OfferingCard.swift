@@ -8,7 +8,7 @@ struct OfferingCard: View {
 
             HStack {
 
-                VStack(alignment: .leading, spacing: 10) {
+                VStack(alignment: .leading, spacing: AppSpacing.smPlus) {
 
                     Text("온라인 헌금")
 
@@ -28,9 +28,9 @@ struct OfferingCard: View {
 
                 Image(systemName: "creditcard.fill")
 
-                    .font(.system(size: 38))
+                    .font(AppFonts.hero)
 
-                    .foregroundStyle(.green)
+                    .foregroundStyle(AppColors.success)
 
             }
 

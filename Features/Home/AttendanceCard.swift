@@ -8,7 +8,7 @@ struct AttendanceCard: View {
 
             HStack {
 
-                VStack(alignment: .leading, spacing: 8) {
+                VStack(alignment: .leading, spacing: AppSpacing.small) {
 
                     Text("이번 달 출석")
 
@@ -16,13 +16,13 @@ struct AttendanceCard: View {
 
                     Text("4 / 5")
 
-                        .font(.system(size: 34, weight: .bold))
+                        .font(AppFonts.largeTitle)
 
                 }
 
                 Spacer()
 
-                VStack(alignment: .trailing, spacing: 8) {
+                VStack(alignment: .trailing, spacing: AppSpacing.small) {
 
                     Text("80%")
 

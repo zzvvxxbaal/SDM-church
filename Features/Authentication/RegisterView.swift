@@ -37,6 +37,7 @@ struct RegisterView: View {
                 .buttonStyle(LiquidButton())
                 .accessibilityLabel("가입하기")
                 .accessibilityHint("입력한 정보로 계정을 생성합니다")
+                .accessibilityAddTraits(.isButton)
             }
             .padding(AppSpacing.large)
         }

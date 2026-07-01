@@ -14,7 +14,7 @@ struct PrayerView: View {
 
             ScrollView {
 
-                VStack(spacing: 20) {
+                VStack(spacing: AppSpacing.inset) {
 
                     LiquidNavigationBar(
                         title: "기도"
@@ -40,7 +40,7 @@ struct PrayerView: View {
 
                 }
 
-                .padding(24)
+                .padding(AppSpacing.large)
 
             }
 

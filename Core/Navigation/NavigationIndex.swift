@@ -87,7 +87,7 @@ public struct AppTabBar: View {
     }
 
     public var body: some View {
-        HStack(spacing: 0) {
+        HStack(spacing: AppSpacing.none) {
             ForEach(0..<5, id: \.self) { index in
                 Button {
                     coordinator.selectTab(index)

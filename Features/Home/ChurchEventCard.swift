@@ -12,7 +12,7 @@ struct ChurchEventCard: View {
 
                     alignment: .leading,
 
-                    spacing: 12
+                    spacing: AppSpacing.compact
 
                 ) {
 
@@ -34,7 +34,7 @@ struct ChurchEventCard: View {
 
                 Image(systemName: "tent.fill")
 
-                    .font(.system(size: 42))
+                    .font(AppFonts.hero)
 
                     .foregroundStyle(AppColors.tint)
 

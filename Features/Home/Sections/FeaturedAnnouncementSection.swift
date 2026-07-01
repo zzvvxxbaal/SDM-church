@@ -6,7 +6,7 @@ struct FeaturedAnnouncementSection: View {
     let date: String
     let preview: String
     let onTap: (() -> Void)?
-    
+
     init(
         title: String = "여름 성경학교 안내",
         category: String = "공지사항",
@@ -20,53 +20,58 @@ struct FeaturedAnnouncementSection: View {
         self.preview = preview
         self.onTap = onTap
     }
-    
+
     var body: some View {
-        AppleSection(
-            title: "최신 공지",
-            icon: "megaphone.fill",
-            size: .large
-        ) {
+        AppleSection(title: "최신 공지", icon: "megaphone.fill", size: .large) {
             Button(action: { onTap?() }) {
                 AppleFeaturedCard(
                     title: title,
                     icon: "megaphone.fill",
-                    backgroundColor: .red.opacity(0.1)
+                    backgroundColor: AppColors.errorSoft
                 ) {
                     VStack(alignment: .leading, spacing: AppSpacing.medium) {
                         HStack(spacing: AppSpacing.small) {
                             Label(category, systemImage: "tag.fill")
-                                .font(.system(size: 12, weight: .semibold))
+                                .font(.caption.weight(.semibold))
                                 .foregroundStyle(AppColors.tint)
+                                .lineLimit(1)
+                                .minimumScaleFactor(0.8)
                                 .padding(.horizontal, AppSpacing.small)
-                                .padding(.vertical, 4)
+                                .padding(.vertical, AppSpacing.xSmall)
                                 .background(AppColors.tint.opacity(0.1))
                                 .cornerRadius(AppRadius.small)
-                            
+
                             Spacer()
-                            
+
                             Text(date)
-                                .font(.system(size: 12, weight: .regular))
-                                .foregroundStyle(.secondary)
+                                .font(AppFonts.caption1)
+                                .foregroundStyle(AppColors.textSecondary)
+                                .lineLimit(1)
+                                .minimumScaleFactor(0.8)
                         }
-                        
+
                         Text(preview)
-                            .font(.system(size: 14, weight: .regular))
-                            .foregroundStyle(.secondary)
+                            .font(.subheadline)
+                            .foregroundStyle(AppColors.textSecondary)
                             .lineLimit(2)
-                        
+                            .minimumScaleFactor(0.85)
+
                         HStack(spacing: AppSpacing.xSmall) {
                             Text("더 보기")
-                                .font(.system(size: 14, weight: .semibold))
+                                .font(.subheadline.weight(.semibold))
                                 .foregroundStyle(AppColors.tint)
-                            
                             Image(systemName: "arrow.right")
-                                .font(.system(size: 12, weight: .semibold))
+                                .font(.caption.weight(.semibold))
                                 .foregroundStyle(AppColors.tint)
+                                .accessibilityHidden(true)
                         }
                     }
                 }
             }
+            .accessibilityLabel(title)
+            .accessibilityHint("공지 상세 화면을 엽니다")
+            .accessibilityValue("\(category), \(date)")
+            .accessibilityAddTraits(.isButton)
         }
     }
 }

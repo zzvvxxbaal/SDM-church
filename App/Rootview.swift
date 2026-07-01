@@ -17,30 +17,40 @@ struct RootView: View {
                         .tabItem {
                             Label("Home", systemImage: "house.fill")
                         }
+                        .accessibilityLabel("Home tab")
+                        .accessibilityIdentifier("tab-home")
 
                     WorshipFeatureView()
                         .tag(1)
                         .tabItem {
                             Label("Worship", systemImage: "music.note")
                         }
+                        .accessibilityLabel("Worship tab")
+                        .accessibilityIdentifier("tab-worship")
 
                     PrayerFeatureView()
                         .tag(2)
                         .tabItem {
                             Label("Prayer", systemImage: "hands.praying.fill")
                         }
+                        .accessibilityLabel("Prayer tab")
+                        .accessibilityIdentifier("tab-prayer")
 
                     CommunityFeatureView()
                         .tag(3)
                         .tabItem {
                             Label("Community", systemImage: "person.fill")
                         }
+                        .accessibilityLabel("Community tab")
+                        .accessibilityIdentifier("tab-community")
 
                     SettingsFeatureView()
                         .tag(4)
                         .tabItem {
                             Label("Settings", systemImage: "gear.fill")
                         }
+                        .accessibilityLabel("Settings tab")
+                        .accessibilityIdentifier("tab-settings")
                 }
                 .navigationDestination(for: AppRoute.self) { route in
                     destinationView(for: route)
@@ -53,6 +63,13 @@ struct RootView: View {
         .onChange(of: tabBarCoordinator.selectedTab) { _, newValue in
             coordinator.selectTab(newValue)
             NavigationAccessibilityHelper.announceTabSwitch(tabName: tabName(for: newValue))
+        }
+        .onChange(of: coordinator.navigationStack) { oldValue, newValue in
+            let fromScreen = oldValue.last.map(routeName(for:)) ?? tabName(for: tabBarCoordinator.selectedTab)
+            let toScreen = newValue.last.map(routeName(for:)) ?? tabName(for: tabBarCoordinator.selectedTab)
+
+            guard fromScreen != toScreen else { return }
+            NavigationAccessibilityHelper.announceNavigation(from: fromScreen, to: toScreen)
         }
     }
 
@@ -88,6 +105,29 @@ struct RootView: View {
         case 3: return "Community"
         case 4: return "Settings"
         default: return "Tab"
+        }
+    }
+
+    private func routeName(for route: AppRoute) -> String {
+        switch route {
+        case .home:
+            return "Home"
+        case .worship:
+            return "Worship"
+        case .prayer:
+            return "Prayer"
+        case .notice:
+            return "Notice"
+        case .calendar:
+            return "Calendar"
+        case .community:
+            return "Community"
+        case .profile:
+            return "Profile"
+        case .settings:
+            return "Settings"
+        case .authentication:
+            return "Authentication"
         }
     }
 }

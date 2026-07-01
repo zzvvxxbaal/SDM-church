@@ -6,7 +6,7 @@ struct NoticeHeader: View {
 
         ScrollView(.horizontal, showsIndicators: false) {
 
-            HStack(spacing: 12) {
+            HStack(spacing: AppSpacing.compact) {
 
                 NoticeCategoryChip(
 

@@ -4,7 +4,7 @@ struct ProfileMenuSection: View {
 
     var body: some View {
 
-        VStack(spacing: 14) {
+        VStack(spacing: AppSpacing.mdPlus) {
 
             LiquidListRow {
 

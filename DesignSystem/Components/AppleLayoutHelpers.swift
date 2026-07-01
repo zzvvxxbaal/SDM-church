@@ -80,11 +80,31 @@ struct AdaptiveText: View {
         return fontSize * multiplier
     }
     
+    private var adaptiveFont: Font {
+        switch scaledSize {
+        case ..<12:
+            return AppFonts.caption2
+        case ..<14:
+            return AppFonts.caption1
+        case ..<16:
+            return AppFonts.subheadline
+        case ..<18:
+            return AppFonts.body
+        case ..<22:
+            return AppFonts.headline
+        case ..<28:
+            return AppFonts.title3
+        default:
+            return AppFonts.title2
+        }
+    }
+
     var body: some View {
         Text(text)
-            .font(.system(size: scaledSize, weight: weight))
+            .font(adaptiveFont.weight(weight))
             .foregroundStyle(color)
             .lineLimit(lineLimit)
+            .minimumScaleFactor(0.8)
     }
 }
 
@@ -256,9 +276,9 @@ struct SectionDivider: View {
     var color: Color {
         switch style {
         case .subtle:
-            return Color.gray.opacity(0.1)
+            return AppColors.separator.opacity(0.2)
         case .prominent:
-            return Color.gray.opacity(0.3)
+            return AppColors.separator.opacity(0.5)
         case .invisible:
             return Color.clear
         }

@@ -14,7 +14,7 @@ struct CalendarView: View {
 
             ScrollView {
 
-                VStack(spacing: 24) {
+                VStack(spacing: AppSpacing.large) {
 
                     LiquidLargeTitle(
 
@@ -38,7 +38,7 @@ struct CalendarView: View {
 
                 }
 
-                .padding(24)
+                .padding(AppSpacing.large)
 
             }
 

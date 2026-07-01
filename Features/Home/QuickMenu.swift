@@ -58,7 +58,7 @@ struct QuickMenu: View {
 
     ) -> some View {
 
-        VStack(spacing: 12) {
+        VStack(spacing: AppSpacing.compact) {
 
             ZStack {
 

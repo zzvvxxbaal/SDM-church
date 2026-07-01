@@ -91,7 +91,7 @@ struct PolishedGlassMaterial: View {
             
             RadialGradient(
                 gradient: Gradient(colors: [
-                    Color.white.opacity(0.2),
+                    AppColors.glass,
                     Color.white.opacity(0.05),
                     Color.clear
                 ]),
@@ -187,7 +187,7 @@ struct MirrorGlassMaterial: View {
             
             RadialGradient(
                 gradient: Gradient(colors: [
-                    Color.white.opacity(0.3),
+                    AppColors.glassHighlight,
                     Color.white.opacity(0.1),
                     Color.clear
                 ]),

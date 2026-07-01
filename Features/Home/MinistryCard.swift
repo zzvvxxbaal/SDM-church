@@ -6,7 +6,7 @@ struct MinistryCard: View {
 
         LiquidCard {
 
-            VStack(alignment: .leading, spacing: 12) {
+            VStack(alignment: .leading, spacing: AppSpacing.compact) {
 
                 Text("사역팀 모집")
 

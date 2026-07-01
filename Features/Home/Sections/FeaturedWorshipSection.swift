@@ -8,7 +8,7 @@ struct FeaturedWorshipSection: View {
     let attendees: Int
     let isRegistered: Bool
     let onRegister: (() -> Void)?
-    
+
     init(
         title: String = "주일 예배",
         day: String = "주일",
@@ -26,80 +26,86 @@ struct FeaturedWorshipSection: View {
         self.isRegistered = isRegistered
         self.onRegister = onRegister
     }
-    
+
     var body: some View {
-        AppleSection(
-            title: "이번 주 예배",
-            icon: "church.fill",
-            size: .large
-        ) {
+        AppleSection(title: "이번 주 예배", icon: "church.fill", size: .large) {
             AppleFeaturedCard(
                 title: title,
                 icon: "church.fill",
-                backgroundColor: .blue.opacity(0.1)
+                backgroundColor: AppColors.infoSoft
             ) {
                 VStack(alignment: .leading, spacing: AppSpacing.medium) {
                     HStack(spacing: AppSpacing.medium) {
                         VStack(alignment: .leading, spacing: AppSpacing.xSmall) {
-                            HStack(spacing: AppSpacing.xSmall) {
-                                Image(systemName: "calendar")
-                                    .font(.system(size: 13, weight: .semibold))
-                                Text(day)
-                                    .font(.system(size: 13, weight: .semibold))
-                            }
-                            
-                            HStack(spacing: AppSpacing.xSmall) {
-                                Image(systemName: "clock.fill")
-                                    .font(.system(size: 13, weight: .semibold))
-                                Text(time)
-                                    .font(.system(size: 13, weight: .semibold))
-                            }
-                            
-                            HStack(spacing: AppSpacing.xSmall) {
-                                Image(systemName: "location.fill")
-                                    .font(.system(size: 13, weight: .semibold))
-                                Text(location)
-                                    .font(.system(size: 13, weight: .semibold))
-                            }
+                            detailRow(icon: "calendar", text: day)
+                            detailRow(icon: "clock.fill", text: time)
+                            detailRow(icon: "location.fill", text: location)
                         }
-                        .foregroundStyle(.secondary)
-                        
+                        .foregroundStyle(AppColors.textSecondary)
+
                         Spacer()
-                        
+
                         VStack(alignment: .trailing, spacing: AppSpacing.xSmall) {
                             Text("\(attendees)")
-                                .font(.system(size: 20, weight: .bold))
+                                .font(AppFonts.title3)
+                                .lineLimit(1)
+                                .minimumScaleFactor(0.8)
                             Text("참석 예정")
-                                .font(.system(size: 12, weight: .regular))
-                                .foregroundStyle(.secondary)
+                                .font(AppFonts.caption1)
+                                .foregroundStyle(AppColors.textSecondary)
                         }
+                        .accessibilityElement(children: .combine)
+                        .accessibilityLabel("참석 예정")
+                        .accessibilityValue("\(attendees)명")
                     }
-                    
+
                     if !isRegistered {
                         Button(action: { onRegister?() }) {
                             Text("등록하기")
-                                .font(.system(size: 16, weight: .semibold))
+                                .font(.headline)
                         }
                         .buttonStyle(LiquidButton())
-                        .frame(height: 44)
+                        .frame(height: AccessibilityHelper.minInteractiveSize)
+                        .accessibilityLabel("등록하기")
+                        .accessibilityHint("이번 주 예배 참석을 등록합니다")
+                        .accessibilityAddTraits(.isButton)
                     } else {
                         HStack(spacing: AppSpacing.small) {
                             Image(systemName: "checkmark.circle.fill")
-                                .font(.system(size: 16, weight: .semibold))
-                                .foregroundStyle(.green)
-                            
+                                .font(.headline)
+                                .foregroundStyle(AppColors.success)
+                                .accessibilityHidden(true)
+
                             Text("등록되었습니다")
-                                .font(.system(size: 14, weight: .semibold))
-                                .foregroundStyle(.green)
+                                .font(.subheadline.weight(.semibold))
+                                .foregroundStyle(AppColors.success)
+                                .lineLimit(1)
+                                .minimumScaleFactor(0.8)
                         }
                         .frame(maxWidth: .infinity)
-                        .frame(height: 44)
-                        .background(Color.green.opacity(0.1))
+                        .frame(height: AccessibilityHelper.minInteractiveSize)
+                        .background(AppColors.successSoft)
                         .cornerRadius(AppRadius.button)
+                        .accessibilityElement(children: .combine)
+                        .accessibilityLabel("등록 상태")
+                        .accessibilityValue("등록되었습니다")
                     }
                 }
             }
         }
+    }
+
+    private func detailRow(icon: String, text: String) -> some View {
+        HStack(spacing: AppSpacing.xSmall) {
+            Image(systemName: icon)
+                .font(.caption.weight(.semibold))
+                .accessibilityHidden(true)
+            Text(text)
+                .font(.caption.weight(.semibold))
+                .lineLimit(1)
+                .minimumScaleFactor(0.8)
+        }
+        .accessibilityElement(children: .combine)
     }
 }
 

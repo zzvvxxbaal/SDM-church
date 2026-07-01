@@ -6,7 +6,7 @@ struct WorshipCountdownCard: View {
 
         LiquidCard {
 
-            VStack(spacing: 16) {
+            VStack(spacing: AppSpacing.medium) {
 
                 Text("다음 예배까지")
 

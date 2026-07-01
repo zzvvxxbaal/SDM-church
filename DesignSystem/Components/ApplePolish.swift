@@ -9,7 +9,7 @@ struct FloatingCardEffect: ViewModifier {
         content
             .scaleEffect(isHovering ? 1.02 : 1.0)
             .shadow(
-                color: Color.black.opacity(isHovering ? 0.15 : 0.08),
+                color: AppColors.glassShadow.opacity(isHovering ? 1.0 : 0.75),
                 radius: isHovering ? 16 : 8,
                 x: 0,
                 y: isHovering ? 12 : 4
@@ -154,15 +154,15 @@ struct AppleBadge: View {
         HStack(spacing: AppSpacing.xSmall) {
             if let icon = icon {
                 Image(systemName: icon)
-                    .font(.system(size: 10, weight: .bold))
+                    .font(.caption2.weight(.bold))
             }
             
             Text(text)
-                .font(.system(size: 11, weight: .semibold))
+                .font(.caption2.weight(.semibold))
         }
-        .foregroundStyle(.white)
+        .foregroundStyle(AppColors.textOnTint)
         .padding(.horizontal, AppSpacing.small)
-        .padding(.vertical, 4)
+        .padding(.vertical, AppSpacing.xSmall)
         .background(color)
         .cornerRadius(AppRadius.small)
     }
@@ -181,7 +181,7 @@ struct LabeledDivider: View {
             }
             
             Text(text)
-                .font(.system(size: 12, weight: .semibold))
+                .font(.caption.weight(.semibold))
                 .foregroundStyle(color)
             
             VStack {
@@ -204,17 +204,17 @@ struct StatDisplay: View {
         VStack(alignment: .center, spacing: AppSpacing.small) {
             if let icon = icon {
                 Image(systemName: icon)
-                    .font(.system(size: 20, weight: .semibold))
+                    .font(AppFonts.title3)
                     .foregroundStyle(color)
             }
             
-            VStack(alignment: .center, spacing: 2) {
+            VStack(alignment: .center, spacing: AppSpacing.xxs) {
                 Text(value)
-                    .font(.system(size: 24, weight: .bold))
+                    .font(.title2.weight(.bold))
                     .foregroundStyle(color)
                 
                 Text(label)
-                    .font(.system(size: 11, weight: .regular))
+                    .font(.caption2)
                     .foregroundStyle(.secondary)
             }
         }
@@ -237,15 +237,15 @@ struct InfoBlock: View {
         VStack(alignment: .leading, spacing: AppSpacing.small) {
             HStack(spacing: AppSpacing.small) {
                 Image(systemName: icon)
-                    .font(.system(size: 16, weight: .semibold))
+                    .font(.headline)
                     .foregroundStyle(color)
                 
                 Text(title)
-                    .font(.system(size: 14, weight: .semibold))
+                    .font(.subheadline.weight(.semibold))
             }
             
             Text(subtitle)
-                .font(.system(size: 13, weight: .regular))
+                .font(AppFonts.caption1)
                 .foregroundStyle(.secondary)
                 .lineLimit(2)
         }
@@ -272,20 +272,25 @@ struct CTARow: View {
             HStack(spacing: AppSpacing.medium) {
                 if let icon = icon {
                     Image(systemName: icon)
-                        .font(.system(size: 16, weight: .semibold))
+                        .font(.headline)
                         .foregroundStyle(AppColors.tint)
                         .frame(width: 32, alignment: .center)
+                        .accessibilityHidden(true)
                 }
                 
-                VStack(alignment: .leading, spacing: 2) {
+                VStack(alignment: .leading, spacing: AppSpacing.xxs) {
                     Text(title)
-                        .font(.system(size: 15, weight: .semibold))
+                        .font(.subheadline.weight(.semibold))
                         .foregroundStyle(.primary)
+                        .lineLimit(1)
+                        .minimumScaleFactor(0.8)
                     
                     if let subtitle = subtitle {
                         Text(subtitle)
-                            .font(.system(size: 12, weight: .regular))
+                            .font(AppFonts.caption1)
                             .foregroundStyle(.secondary)
+                            .lineLimit(2)
+                            .minimumScaleFactor(0.8)
                     }
                 }
                 
@@ -293,16 +298,23 @@ struct CTARow: View {
                 
                 if let trailing = trailing {
                     Text(trailing)
-                        .font(.system(size: 13, weight: .regular))
+                        .font(AppFonts.caption1)
                         .foregroundStyle(.secondary)
+                        .lineLimit(1)
+                        .minimumScaleFactor(0.8)
                 }
                 
                 Image(systemName: "chevron.right")
-                    .font(.system(size: 14, weight: .semibold))
+                    .font(.subheadline.weight(.semibold))
                     .foregroundStyle(.tertiary)
+                    .accessibilityHidden(true)
             }
             .padding(AppSpacing.medium)
             .liquidGlass(.card, cornerRadius: AppRadius.card)
         }
+        .accessibilityLabel(title)
+        .accessibilityHint("상세 내용을 엽니다")
+        .accessibilityValue(subtitle ?? trailing ?? "")
+        .accessibilityAddTraits(.isButton)
     }
 }

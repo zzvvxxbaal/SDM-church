@@ -14,7 +14,7 @@ struct CommunityView: View {
 
             ScrollView {
 
-                VStack(spacing: 20) {
+                VStack(spacing: AppSpacing.inset) {
 
                     LiquidNavigationBar(
                         title: "소그룹"
@@ -40,7 +40,7 @@ struct CommunityView: View {
 
                 }
 
-                .padding(24)
+                .padding(AppSpacing.large)
 
             }
 

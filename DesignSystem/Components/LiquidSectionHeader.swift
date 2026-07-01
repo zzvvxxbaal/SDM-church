@@ -8,7 +8,7 @@ struct LiquidSectionHeader: View {
 
     var body: some View {
 
-        VStack(alignment: .leading, spacing: 6) {
+        VStack(alignment: .leading, spacing: AppSpacing.xsWide) {
 
             Text(title)
 
