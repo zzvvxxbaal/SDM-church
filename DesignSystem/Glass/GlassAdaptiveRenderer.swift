@@ -8,7 +8,6 @@ struct GlassAdaptiveRenderer: ViewModifier {
     @Environment(\.colorScheme) var colorScheme
     @Environment(\.accessibilityReduceTransparency) var reduceTransparency
     @Environment(\.accessibilityReduceMotion) var reduceMotion
-    @Environment(\.accessibilityDifferentiateWithoutColor) var differentiateWithoutColor
     
     func body(content: Content) -> some View {
         let adaptiveConfig = self.createAdaptiveConfiguration()

@@ -129,12 +129,12 @@ struct GlassPerformanceMonitor: ViewModifier {
     }
     
     private func setupDisplayLink() {
-        let displayLink = CADisplayLink(
+        let newDisplayLink = CADisplayLink(
             target: PerformanceTarget.shared,
             selector: #selector(PerformanceTarget.update)
         )
-        displayLink.add(to: .main, forMode: .common)
-        self.displayLink = displayLink
+        newDisplayLink.add(to: .main, forMode: .common)
+        displayLink = newDisplayLink
     }
 }
 

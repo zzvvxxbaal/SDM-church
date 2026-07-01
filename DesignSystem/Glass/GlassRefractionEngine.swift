@@ -2,7 +2,6 @@ import SwiftUI
 
 struct GlassRefractionEngine: ViewModifier {
     let configuration: GlassConfiguration
-    let cornerRadius: CGFloat
     @Environment(\.colorScheme) var colorScheme
     
     func body(content: Content) -> some View {
@@ -10,7 +9,7 @@ struct GlassRefractionEngine: ViewModifier {
             .overlay(
                 DynamicRefractionLayer(
                     configuration: configuration,
-                    cornerRadius: cornerRadius,
+                    cornerRadius: 16,
                     colorScheme: colorScheme
                 )
             )
@@ -21,8 +20,6 @@ struct DynamicRefractionLayer: View {
     let configuration: GlassConfiguration
     let cornerRadius: CGFloat
     let colorScheme: ColorScheme
-    
-    @State private var animatedOffset: CGFloat = 0
     
     var body: some View {
         let refractionOpacity = configuration.refractionIntensity * 0.15
@@ -56,19 +53,13 @@ struct DynamicRefractionLayer: View {
                 .blendMode(.lighten)
         }
         .opacity(0.6)
-        .onAppear {
-            withAnimation(.easeInOut(duration: 3).repeatForever(autoreverses: true)) {
-                animatedOffset = 8
-            }
-        }
     }
 }
 
 extension View {
     func glassRefraction(
-        configuration: GlassConfiguration = .default,
-        cornerRadius: CGFloat = 16
+        configuration: GlassConfiguration = .default
     ) -> some View {
-        modifier(GlassRefractionEngine(configuration: configuration, cornerRadius: cornerRadius))
+        modifier(GlassRefractionEngine(configuration: configuration))
     }
 }

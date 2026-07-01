@@ -59,17 +59,22 @@ struct FrostedGlassMaterial: View {
             .blur(radius: 2)
             
             Canvas { context, size in
-                for i in 0..<Int(size.width / 10) {
-                    for j in 0..<Int(size.height / 10) {
-                        let x = CGFloat(i) * 10
-                        let y = CGFloat(j) * 10
+                let step: CGFloat = 20
+                var x = CGFloat(0)
+                var y = CGFloat(0)
+                
+                while y < size.height {
+                    x = 0
+                    while x < size.width {
                         let circle = Circle()
                             .path(in: CGRect(x: x, y: y, width: 8, height: 8))
                         context.fill(
                             circle,
                             with: .color(Color.white.opacity(0.02))
                         )
+                        x += step
                     }
+                    y += step
                 }
             }
         }
@@ -233,15 +238,22 @@ extension View {
     func noise() -> some View {
         self.overlay(
             Canvas { context, size in
-                for x in stride(from: 0, to: size.width, by: 2) {
-                    for y in stride(from: 0, to: size.height, by: 2) {
-                        let opacity = Double.random(in: 0...0.05)
+                let step: CGFloat = 4
+                var x = CGFloat(0)
+                var y = CGFloat(0)
+                
+                while y < size.height {
+                    x = 0
+                    while x < size.width {
+                        let opacity: Double = 0.02
                         let point = CGPoint(x: x, y: y)
                         context.fill(
                             Circle().path(in: CGRect(x: x, y: y, width: 1, height: 1)),
                             with: .color(Color.white.opacity(opacity))
                         )
+                        x += step
                     }
+                    y += step
                 }
             }
             .blendMode(.screen)

@@ -2,7 +2,6 @@ import SwiftUI
 
 struct GlassReflectionEngine: ViewModifier {
     let configuration: GlassConfiguration
-    let cornerRadius: CGFloat
     @State private var motion = DeviceMotionManager()
     @Environment(\.colorScheme) var colorScheme
     
@@ -58,9 +57,8 @@ struct DynamicReflectionLayer: View {
 
 extension View {
     func glassReflection(
-        configuration: GlassConfiguration = .default,
-        cornerRadius: CGFloat = 16
+        configuration: GlassConfiguration = .default
     ) -> some View {
-        modifier(GlassReflectionEngine(configuration: configuration, cornerRadius: cornerRadius))
+        modifier(GlassReflectionEngine(configuration: configuration))
     }
 }
