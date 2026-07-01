@@ -8,7 +8,15 @@ struct GlassDivider: View {
 
             .fill(
 
-                .white.opacity(0.12)
+                LinearGradient(
+                    gradient: Gradient(colors: [
+                        .white.opacity(0.08),
+                        .white.opacity(0.04),
+                        .white.opacity(0.08)
+                    ]),
+                    startPoint: .leading,
+                    endPoint: .trailing
+                )
 
             )
 

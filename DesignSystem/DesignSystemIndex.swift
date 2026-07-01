@@ -8,6 +8,12 @@ public typealias Spacing = AppSpacing
 public typealias Radius = AppRadius
 public typealias Shadow = AppShadow
 
+// MARK: - Glass System
+
+public typealias GlassMaterial = GlassMaterialType
+public typealias GlassLighting = GlassLightingSystem
+public typealias GlassMotion = GlassMotionSystem
+
 // MARK: - Badges
 public typealias Badge = LiquidBadge
 

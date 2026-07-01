@@ -49,6 +49,10 @@ struct LiquidLoadingView: View {
                 )
 
             )
+            .floatingAnimation(
+                offset: 2,
+                duration: 2.0
+            )
 
             .onAppear {
 

@@ -42,7 +42,17 @@ struct LiquidAvatar: View {
 
             Circle()
 
-                .stroke(.white.opacity(0.35), lineWidth: 1)
+                .stroke(
+                    LinearGradient(
+                        gradient: Gradient(colors: [
+                            .white.opacity(0.45),
+                            .white.opacity(0.15)
+                        ]),
+                        startPoint: .topLeading,
+                        endPoint: .bottomTrailing
+                    ),
+                    lineWidth: 1.5
+                )
 
         }
 
