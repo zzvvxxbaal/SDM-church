@@ -19,6 +19,13 @@ public typealias Shadow = AppShadow
 public typealias GlassMaterial = GlassMaterialType
 public typealias GlassLighting = GlassLightingSystem
 public typealias GlassMotion = GlassMotionSystem
+public typealias GlassConfig = GlassConfiguration
+public typealias GlassPerformanceConfig = GlassPerformanceMode
+public typealias GlassVariantLibrary = GlassVariants
+public typealias GlassRendering = GlassRenderingSystem
+public typealias GlassEnvironmentConfig = GlassRenderingEnvironment
+public typealias GlassPerformanceTools = GlassPerformance
+public typealias GlassMetal = GlassMetalIntegration
 
 // MARK: - Badges
 public typealias Badge = LiquidBadge
