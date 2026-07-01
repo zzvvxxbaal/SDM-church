@@ -79,9 +79,11 @@ struct FeaturedEventSection: View {
                     .foregroundStyle(.secondary)
                     
                     VStack(alignment: .leading, spacing: AppSpacing.small) {
-                        HStack(justifyContent: .spaceBetween) {
+                        HStack(spacing: 0) {
                             Text("참석 현황")
                                 .font(.system(size: 12, weight: .semibold))
+                            
+                            Spacer()
                             
                             Text("\(rsvpCount) / \(maxAttendees)명")
                                 .font(.system(size: 12, weight: .semibold))
@@ -115,12 +117,6 @@ struct FeaturedEventSection: View {
                 }
             }
         }
-    }
-}
-
-extension HStack {
-    init(justifyContent: VerticalAlignment, @ViewBuilder content: () -> some View) {
-        self.init(alignment: justifyContent, spacing: nil, content: content)
     }
 }
 
