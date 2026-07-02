@@ -1,23 +1,89 @@
 import SwiftUI
 
 struct LiquidLargeTitle: View {
+
     let title: String
-    let subtitle: String
+
+    let subtitle: String?
+
+    init(
+        title: String,
+        subtitle: String? = nil
+    ) {
+        self.title = title
+        self.subtitle = subtitle
+    }
 
     var body: some View {
-        VStack(alignment: .leading, spacing: AppSpacing.small) {
+
+        VStack(
+            alignment: .leading,
+            spacing: AppSpacing.small
+        ) {
+
+            if let subtitle {
+
+                Text(subtitle.uppercased())
+
+                    .font(AppFonts.caption)
+
+                    .fontWeight(.semibold)
+
+                    .foregroundStyle(AppColors.accent)
+
+                    .tracking(1.4)
+
+                    .textCase(.uppercase)
+
+            }
+
             Text(title)
-                .font(.largeTitle.weight(.bold))
+
+                .font(AppFonts.extraLargeTitle)
+
+                .fontWeight(.bold)
+
+                .multilineTextAlignment(.leading)
+
+                .minimumScaleFactor(0.7)
+
                 .lineLimit(2)
-                .minimumScaleFactor(0.8)
+
                 .accessibilityAddTraits(.isHeader)
 
-            Text(subtitle)
-                .font(.headline)
-                .foregroundStyle(AppColors.textSecondary)
-                .lineLimit(2)
-                .minimumScaleFactor(0.8)
         }
-        .frame(maxWidth: .infinity, alignment: .leading)
+
+        .frame(
+            maxWidth: .infinity,
+            alignment: .leading
+        )
+
+        .padding(.horizontal, AppSpacing.small)
+
+        .padding(.top, AppSpacing.small)
+
+        .padding(.bottom, AppSpacing.medium)
+
     }
+
+}
+
+#Preview {
+
+    ZStack {
+
+        MeshGradientBackground()
+
+        LiquidLargeTitle(
+
+            title: "서대문교회",
+
+            subtitle: "청년부"
+
+        )
+
+        .padding()
+
+    }
+
 }
