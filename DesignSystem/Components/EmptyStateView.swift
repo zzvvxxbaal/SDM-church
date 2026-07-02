@@ -2,7 +2,7 @@ import SwiftUI
 
 struct EmptyStateView: View {
 
-    let image: String
+    let icon: String
 
     let title: String
 
@@ -10,25 +10,38 @@ struct EmptyStateView: View {
 
     var body: some View {
 
-        VStack(spacing: AppSpacing.inset) {
+        VStack(spacing: 20) {
 
-            Image(systemName: image)
+            Image(systemName: icon)
 
-                .font(AppFonts.hero)
+                .font(.system(size: 48))
+
+                .foregroundStyle(AppColors.accent)
 
             Text(title)
 
-                .font(.title2.bold())
+                .font(AppFonts.title2)
+
+                .fontWeight(.bold)
 
             Text(subtitle)
 
-                .foregroundStyle(.secondary)
+                .font(AppFonts.body)
+
+                .foregroundStyle(AppColors.textSecondary)
 
                 .multilineTextAlignment(.center)
 
         }
 
-        .padding(AppSpacing.jumbo)
+        .padding(32)
+
+        .frame(maxWidth: .infinity)
+
+        .liquidGlass(
+            .card,
+            cornerRadius: AppRadius.extraLarge
+        )
 
     }
 
