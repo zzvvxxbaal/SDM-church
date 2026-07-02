@@ -24,7 +24,7 @@ struct GlassReflectionLayer: View {
 
                     Color.white.opacity(opacity),
 
-                    Color.white.opacity(opacity * 0.25),
+                    Color.white.opacity(opacity * 0.35),
 
                     .clear
 
