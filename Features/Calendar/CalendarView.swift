@@ -4,26 +4,45 @@ struct CalendarView: View {
     private let viewModel = CalendarViewModel()
 
     var body: some View {
-        ZStack {
-            MeshGradientBackground()
 
-            ScrollView {
-                LazyVStack(spacing: AppSpacing.large) {
-                    LiquidLargeTitle(
-                        title: "일정",
-                        subtitle: "이번 주"
-                    )
-                    CalendarMonthHeader()
+    ZStack {
 
-                    ForEach(viewModel.events) { event in
-                        EventCard(event: event)
-                            .id(event.id)
-                    }
-                }
-                .padding(AppSpacing.large)
+        MeshGradientBackground()
+
+        ScrollView(.vertical, showsIndicators: false) {
+
+            LazyVStack(
+                spacing: 28
+            ) {
+
+                LiquidLargeTitle(
+
+                    title: "일정",
+
+                    subtitle: "Calendar"
+
+                )
+
+                MonthlyCalendarCard()
+
+                UpcomingScheduleCard()
+
+                MonthlyEventList()
+
+                Color.clear
+
+                    .frame(height: 120)
+
             }
+
+            .padding(.horizontal, 24)
+
+            .padding(.top, 24)
+
         }
+
     }
+
 }
 
 #Preview {
