@@ -1,86 +1,91 @@
 import SwiftUI
 
 struct LoginView: View {
-    @State private var viewModel = AuthenticationViewModel()
 
     var body: some View {
+
         ZStack {
-            AppColors.background
-                .ignoresSafeArea()
 
-            ScrollView(.vertical, showsIndicators: false) {
-                LazyVStack(spacing: AppSpacing.xLarge) {
-                    Spacer()
+            MeshGradientBackground()
 
-                    VStack(spacing: AppSpacing.compact) {
-                        Text("서대문교회")
-                            .font(AppFonts.largeTitle)
-                            .lineLimit(1)
-                            .minimumScaleFactor(0.75)
+            VStack(spacing: 28) {
 
-                        Text("청년부")
-                            .font(AppFonts.headline)
-                            .foregroundStyle(AppColors.textSecondary)
-                    }
+                Spacer()
 
-                    VStack(spacing: AppSpacing.large) {
-                        LiquidTextField(
-                            title: "이메일",
-                            text: $viewModel.email,
-                            systemImage: "envelope"
-                        )
+                VStack(spacing: 16) {
 
-                        LiquidSecureField(
-                            title: "비밀번호",
-                            text: $viewModel.password
-                        )
-                    }
+                    Image(systemName: "church.fill")
 
-                    VStack(spacing: AppSpacing.large) {
-                        Button {
-                        } label: {
-                            Text("로그인")
-                        }
-                        .buttonStyle(LiquidButton())
-                        .accessibilityLabel("로그인")
-                        .accessibilityHint("입력한 계정으로 로그인합니다")
-                        .accessibilityAddTraits(.isButton)
+                        .font(.system(size: 64))
 
-                        Button {
-                        } label: {
-                            Label("Google로 계속하기", systemImage: "globe")
-                        }
-                        .buttonStyle(LiquidButton())
-                        .accessibilityLabel("Google로 계속하기")
-                        .accessibilityHint("Google 계정으로 로그인합니다")
-                        .accessibilityAddTraits(.isButton)
+                        .foregroundStyle(AppColors.accent)
 
-                        Button {
-                        } label: {
-                            Text("카카오로 계속하기")
-                        }
-                        .buttonStyle(LiquidButton())
-                        .accessibilityLabel("카카오로 계속하기")
-                        .accessibilityHint("카카오 계정으로 로그인합니다")
-                        .accessibilityAddTraits(.isButton)
+                    Text("서대문교회")
 
-                        Button {
-                        } label: {
-                            Text("회원가입")
-                        }
-                        .buttonStyle(LiquidButton())
-                        .accessibilityLabel("회원가입")
-                        .accessibilityHint("새 계정을 만듭니다")
-                        .accessibilityAddTraits(.isButton)
-                    }
+                        .font(AppFonts.extraLargeTitle)
+
+                        .fontWeight(.bold)
+
+                    Text("청년부")
+
+                        .font(AppFonts.title3)
+
+                        .foregroundStyle(AppColors.textSecondary)
+
                 }
-                .padding(.horizontal, AppSpacing.large)
-                .padding(.vertical, AppSpacing.xxxLarge)
+
+                Spacer()
+
+                VStack(spacing: 16) {
+
+                    LiquidLoginButton(
+
+                        title: "Apple로 계속하기",
+
+                        systemImage: "apple.logo"
+
+                    )
+
+                    LiquidLoginButton(
+
+                        title: "카카오로 계속하기",
+
+                        systemImage: "message.fill"
+
+                    )
+
+                    LiquidLoginButton(
+
+                        title: "Google로 계속하기",
+
+                        systemImage: "globe"
+
+                    )
+
+                    LiquidLoginButton(
+
+                        title: "이메일로 로그인",
+
+                        systemImage: "envelope.fill"
+
+                    )
+
+                }
+
+                Spacer()
+
             }
+
+            .padding(24)
+
         }
+
     }
+
 }
 
 #Preview {
+
     LoginView()
+
 }
