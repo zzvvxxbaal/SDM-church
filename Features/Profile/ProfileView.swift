@@ -4,43 +4,47 @@ struct ProfileView: View {
     private let viewModel = ProfileViewModel()
 
     var body: some View {
-        ZStack {
-            MeshGradientBackground()
 
-            ScrollView {
-                LazyVStack(spacing: AppSpacing.large) {
-                    LiquidLargeTitle(
-                        title: "프로필",
-                        subtitle: "내 정보"
-                    )
+    ZStack {
 
-                    LiquidAvatar(
-                        initials: "정",
-                        size: 110
-                    )
+        MeshGradientBackground()
 
-                    LiquidCard {
-                        Text(viewModel.name)
-                            .font(AppFonts.title)
+        ScrollView(.vertical, showsIndicators: false) {
 
-                        Text(viewModel.church)
-                            .foregroundStyle(.secondary)
+            LazyVStack(
+                spacing: 28
+            ) {
 
-                        Text(viewModel.department)
-                            .foregroundStyle(.secondary)
-                    }
-                    .id("profile-summary")
+                LiquidLargeTitle(
 
-                    ProfileStatSection()
-                    ProfileMenuSection()
+                    title: "내 정보",
 
-                    Color.clear
-                        .frame(minHeight: AppSpacing.floating * 2)
-                }
-                .padding(AppSpacing.large)
+                    subtitle: "Profile"
+
+                )
+
+                ProfileHeaderCard()
+
+                AttendanceCard()
+
+                ServingCard()
+
+                AccountCard()
+
+                Color.clear
+
+                    .frame(height: 120)
+
             }
+
+            .padding(.horizontal, 24)
+
+            .padding(.top, 24)
+
         }
+
     }
+
 }
 
 #Preview {
