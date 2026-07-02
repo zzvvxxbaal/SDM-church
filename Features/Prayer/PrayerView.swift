@@ -17,9 +17,7 @@ struct PrayerView: View {
                     PrayerInputCard()
 
                     ForEach(viewModel.prayers, id: \.self) { prayer in
-                        GlassSurface(
-                            material: .card
-                        ) {
+                        LiquidCard {
                             Label(
                                 prayer,
                                 systemImage: "hands.sparkles.fill"
