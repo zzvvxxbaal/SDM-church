@@ -1,28 +1,74 @@
 import SwiftUI
 
 struct LiquidSearchBar: View {
-    @Binding var text: String
+
+    @Binding
+    var text: String
+
+    var placeholder: String = "검색"
 
     var body: some View {
+
         HStack(spacing: AppSpacing.medium) {
+
             Image(systemName: "magnifyingglass")
+                .font(.headline)
                 .foregroundStyle(AppColors.textSecondary)
                 .accessibilityHidden(true)
 
-            TextField("검색", text: $text)
-                .font(.body)
-                .accessibilityLabel("검색")
-                .accessibilityHint("현재 목록을 필터링합니다")
+            TextField(
+                placeholder,
+                text: $text
+            )
+            .textInputAutocapitalization(.never)
+            .autocorrectionDisabled()
+            .font(AppFonts.body)
+
+            if !text.isEmpty {
+
+                Button {
+
+                    text = ""
+
+                } label: {
+
+                    Image(systemName: "xmark.circle.fill")
+                        .symbolRenderingMode(.hierarchical)
+                        .foregroundStyle(AppColors.textSecondary)
+
+                }
+                .buttonStyle(.plain)
+
+            }
+
         }
-        .padding(.horizontal, AppSpacing.controlInset)
+
+        .padding(.horizontal, AppSpacing.large)
+
         .frame(height: 56)
-        .liquidGlass(.toolbar, cornerRadius: AppRadius.small)
+
+        .liquidGlass(
+            .toolbar,
+            cornerRadius: AppRadius.full
+        )
+
         .accessibilityElement(children: .contain)
+
     }
+
 }
 
 #Preview {
-    @Previewable @State var search = ""
 
-    LiquidSearchBar(text: $search)
+    ZStack {
+
+        MeshGradientBackground()
+
+        LiquidSearchBar(
+            text: .constant("")
+        )
+        .padding()
+
+    }
+
 }
