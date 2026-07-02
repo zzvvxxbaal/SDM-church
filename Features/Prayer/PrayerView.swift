@@ -4,32 +4,49 @@ struct PrayerView: View {
     private let viewModel = PrayerViewModel()
 
     var body: some View {
-        ZStack {
-            AppColors.background
-                .ignoresSafeArea()
 
-            ScrollView {
-                LazyVStack(spacing: AppSpacing.inset) {
-                    LiquidNavigationBar(
-                        title: "기도"
+    ZStack {
+
+        MeshGradientBackground()
+
+        ScrollView(.vertical, showsIndicators: false) {
+
+            LazyVStack(
+                spacing: 28
+            ) {
+
+                LiquidLargeTitle(
+
+                    title: "기도",
+
+                    subtitle: "Prayer"
+
+                )
+
+                PrayerSummaryCard()
+
+                ForEach(viewModel.prayers) { prayer in
+
+                    PrayerCard(
+                        prayer: prayer
                     )
 
-                    PrayerInputCard()
-
-                    ForEach(viewModel.prayers, id: \.self) { prayer in
-                        LiquidCard {
-                            Label(
-                                prayer,
-                                systemImage: "hands.sparkles.fill"
-                            )
-                        }
-                        .id(prayer)
-                    }
                 }
-                .padding(AppSpacing.large)
+
+                Color.clear
+
+                    .frame(height: 120)
+
             }
+
+            .padding(.horizontal, 24)
+
+            .padding(.top, 24)
+
         }
+
     }
+
 }
 
 #Preview {
