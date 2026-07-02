@@ -4,43 +4,77 @@ struct WorshipView: View {
     private let viewModel = WorshipViewModel()
 
     var body: some View {
-        ZStack {
-            MeshGradientBackground()
 
-            ScrollView(.vertical, showsIndicators: false) {
-                LazyVStack(spacing: AppSpacing.large) {
-                    LiquidLargeTitle(
-                        title: viewModel.title,
-                        subtitle: "예배 안내"
+    ZStack {
+
+        MeshGradientBackground()
+
+        ScrollView(.vertical, showsIndicators: false) {
+
+            LazyVStack(
+                spacing: 28
+            ) {
+
+                LiquidLargeTitle(
+
+                    title: "예배",
+
+                    subtitle: "Worship"
+
+                )
+
+                WorshipScheduleCard()
+
+                LiquidCard {
+
+                    Label(
+
+                        viewModel.location,
+
+                        systemImage: "mappin.and.ellipse.fill"
+
                     )
 
-                    WorshipScheduleCard()
+                    Divider()
 
-                    LiquidCard {
-                        VStack(alignment: .leading, spacing: AppSpacing.medium) {
-                            Label(
-                                viewModel.nextWorship,
-                                systemImage: "calendar"
-                            )
+                    Label(
 
-                            GlassDivider()
+                        viewModel.nextWorship,
 
-                            Label(
-                                viewModel.location,
-                                systemImage: "mappin.and.ellipse"
-                            )
-                        }
-                    }
-                    .id("worship-location")
+                        systemImage: "calendar"
 
-                    Color.clear
-                        .frame(minHeight: AppSpacing.section * 2)
+                    )
+
+                    Divider()
+
+                    Label(
+
+                        "청년부 예배",
+
+                        systemImage: "person.3.fill"
+
+                    )
+
                 }
-                .padding(.horizontal, AppSpacing.large)
-                .padding(.top, AppSpacing.large)
+
+                HomeBanner()
+
+                    .frame(height: 180)
+
+                Color.clear
+
+                    .frame(height: 120)
+
             }
+
+            .padding(.horizontal, 24)
+
+            .padding(.top, 24)
+
         }
+
     }
+
 }
 
 #Preview {
