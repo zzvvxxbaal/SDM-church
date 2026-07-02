@@ -5,29 +5,51 @@ struct NoticeView: View {
     @State private var search = ""
 
     var body: some View {
-        ZStack {
-            MeshGradientBackground()
 
-            ScrollView {
-                LazyVStack(spacing: AppSpacing.large) {
-                    LiquidLargeTitle(
-                        title: "공지사항",
-                        subtitle: "청년부 소식"
+    ZStack {
+
+        MeshGradientBackground()
+
+        ScrollView(.vertical, showsIndicators: false) {
+
+            LazyVStack(
+                spacing: 28
+            ) {
+
+                LiquidLargeTitle(
+
+                    title: "공지사항",
+
+                    subtitle: "Notice"
+
+                )
+
+                LiquidSearchBar(
+                    text: $viewModel.searchText
+                )
+
+                ForEach(viewModel.notices) { notice in
+
+                    NoticeCard(
+                        notice: notice
                     )
 
-                    LiquidSearchBar(text: $search)
-
-                    NoticeHeader()
-
-                    ForEach(viewModel.notices) { notice in
-                        NoticeCard(notice: notice)
-                            .id(notice.id)
-                    }
                 }
-                .padding(AppSpacing.large)
+
+                Color.clear
+
+                    .frame(height: 120)
+
             }
+
+            .padding(.horizontal, 24)
+
+            .padding(.top, 24)
+
         }
+
     }
+
 }
 
 #Preview {
