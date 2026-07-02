@@ -5,7 +5,7 @@ struct GlassSurface<Content: View>: View {
     let material: GlassProvider.Material
 
     @ViewBuilder
-    var content: Content
+    let content: Content
 
     private var configuration: GlassConfiguration {
 
@@ -19,20 +19,18 @@ struct GlassSurface<Content: View>: View {
 
         content
 
-            .padding()
+            .frame(
+                maxWidth: .infinity,
+                alignment: .leading
+            )
 
             .background {
 
                 RoundedRectangle(
-
                     cornerRadius: configuration.cornerRadius,
-
                     style: .continuous
-
                 )
-
                 .fill(.clear)
-
                 .glassBackgroundEffect()
 
             }
@@ -40,13 +38,9 @@ struct GlassSurface<Content: View>: View {
             .overlay {
 
                 RoundedRectangle(
-
                     cornerRadius: configuration.cornerRadius,
-
                     style: .continuous
-
                 )
-
                 .strokeBorder(
 
                     LinearGradient(
@@ -73,16 +67,6 @@ struct GlassSurface<Content: View>: View {
 
             }
 
-            .shadow(
-
-                color: .black.opacity(0.10),
-
-                radius: configuration.shadow,
-
-                y: configuration.shadow / 2
-
-            )
-
             .overlay {
 
                 GlassReflectionLayer(
@@ -94,6 +78,16 @@ struct GlassSurface<Content: View>: View {
                 )
 
             }
+
+            .shadow(
+
+                color: .black.opacity(0.12),
+
+                radius: configuration.shadow,
+
+                y: configuration.shadow / 2
+
+            )
 
     }
 
