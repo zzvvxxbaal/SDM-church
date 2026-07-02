@@ -4,32 +4,47 @@ struct CommunityView: View {
     private let viewModel = CommunityViewModel()
 
     var body: some View {
-        ZStack {
-            AppColors.background
-                .ignoresSafeArea()
 
-            ScrollView {
-                LazyVStack(spacing: AppSpacing.inset) {
-                    LiquidNavigationBar(
-                        title: "소그룹"
-                    )
+    ZStack {
 
-                    LeaderCard()
+        MeshGradientBackground()
 
-                    ForEach(viewModel.groups, id: \.self) { group in
-                        LiquidCard {
-                            Label(
-                                group,
-                                systemImage: "person.3.fill"
-                            )
-                        }
-                        .id(group)
-                    }
-                }
-                .padding(AppSpacing.large)
+        ScrollView(.vertical, showsIndicators: false) {
+
+            LazyVStack(
+                spacing: 28
+            ) {
+
+                LiquidLargeTitle(
+
+                    title: "공동체",
+
+                    subtitle: "Community"
+
+                )
+
+                CommunitySummaryCard()
+
+                SmallGroupCard()
+
+                MinistryCard()
+
+                CommunityMemberCard()
+
+                Color.clear
+
+                    .frame(height: 120)
+
             }
+
+            .padding(.horizontal, 24)
+
+            .padding(.top, 24)
+
         }
+
     }
+
 }
 
 #Preview {
